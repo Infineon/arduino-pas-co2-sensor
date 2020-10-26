@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map For PAS CO2
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+Error_t KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin   KEYWORD2
+end KEYWORD2
+enable	KEYWORD2
+disable KEYWORD2
+startMeasure    KEYWORD2
+stopMeasure KEYWORD2
+getCO2  KEYWORD2
+getDiagnosis    KEYWORD2
+calibrate   KEYWORD2
+reset   KEYWORD2
+getDeviceID KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+PASCO2  KEYWORD2
+PASCO2Serial  KEYWORD2
+PASCO2SerialIno KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+OK LITERAL1
+INTF_ERROR  LITERAL1
