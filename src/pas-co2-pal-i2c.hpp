@@ -14,6 +14,7 @@
 
 #if IS_INTF(PAS_CO2_INTF_I2C)
 
+#include <stdint.h>
 #include "pas-co2-types.hpp"
 
 namespace pasco2

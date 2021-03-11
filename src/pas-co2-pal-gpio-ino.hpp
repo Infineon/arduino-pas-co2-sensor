@@ -12,7 +12,7 @@
 
 #include "pas-co2-conf.hpp"
 
-#if (HALL_SWITCH_FRAMEWORK == HALL_SWITCH_FRMWK_ARDUINO)
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
 
 #include <stdint.h>
 #include "pas-co2-pal-gpio.hpp"

@@ -17,6 +17,8 @@
 #include "pas-co2-pal-gpio.hpp"
 #include "pas-co2-reg.hpp"
 
+#undef PWM
+
 using namespace pasco2;
 
 /**

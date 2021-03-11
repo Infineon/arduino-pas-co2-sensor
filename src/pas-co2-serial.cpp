@@ -107,8 +107,8 @@ Error_t PASCO2Serial::enable()
  * @details     Initializes the controller peripheral interfaces and enable 
  *              VDD and IR emitter power of the sensor
  * 
- * @note       Optional call. Each API function will set internally 
- *             the required status for its operation
+ * @note        Optional call. Each API function will set internally 
+ *              the required status for its operation
  * 
  * @return      PAS CO2 error code
  * @retval      OK if success

@@ -17,13 +17,15 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <HardwareSerial.h>
 #include "pas-co2-serial.hpp"
 #include "pas-co2-i2c.hpp"
 #include "pas-co2-uart.hpp"
 #include "pas-co2-pal-gpio-ino.hpp"
 #include "pas-co2-pal-timer-ino.hpp"
 #include "pas-co2-pal-i2c-ino.hpp"
-#include "pas-co2-pal-uart.hpp"
+#include "pas-co2-pal-uart-ino.hpp"
+#include "pas-co2-platf-ino.hpp"
 
 /**
  * @addtogroup co2sinoapi
@@ -45,14 +47,15 @@ class PASCO2SerialIno : public PASCO2Serial
         
         #endif
 
-        //#if IS_INTF(PAS_CO2_INTF_UART)
+        #if IS_INTF(PAS_CO2_INTF_UART)
+
         /* UART interface */
-        // PASCO2SerialIno(HardwareSerial * serial  = nullptr, 
-        //                 uint8_t   intPin         = UnusedPin, 
-        //                 uint8_t   protoSelectPin = UnusedPin,
-        //                 uint8_t   power3V3Pin    = UnusedPin,
-        //                 uint8_t   power12VPin    = UnusedPin);
-        //#endif
+        PASCO2SerialIno(HardwareSerial * serial, 
+                        uint8_t          intPin         = GPIOIno::unusedPin, 
+                        uint8_t          protoSelectPin = GPIOIno::unusedPin,
+                        uint8_t          power3V3Pin    = GPIOIno::unusedPin,
+                        uint8_t          power12VPin    = GPIOIno::unusedPin);
+        #endif
         
         ~PASCO2SerialIno();
 
@@ -89,10 +92,10 @@ class PASCO2SerialIno : public PASCO2Serial
         #endif
 
 
-        //#if IS_INTF(PAS_CO2_INTF_UART)
-        // UARTPAL* uartpal;
-        // UART   * uart;
-        //#endif
+        #if IS_INTF(PAS_CO2_INTF_UART)
+        UARTPALIno   * uartpal;
+        pasco2::UART * uart;
+        #endif
         
         TimerIno  * timer;
         GPIOIno   * interrupt;

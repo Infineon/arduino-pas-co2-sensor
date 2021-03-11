@@ -11,7 +11,7 @@
 #define PAS_CO2_PAL_PWM_HPP_
 
 #include "pas-co2-types.hpp"
-
+#undef PWM
 namespace pasco2
 {
 
@@ -41,17 +41,25 @@ class PWM
         virtual Error_t    deinit      () = 0;
         
         /**
-          * @brief       Gets the average CO2 concretation in ppm of a PWM pulse train
+          * @brief       Gets the PWM input duty cycle in percentage
           * 
-          * @note        The read out of PWM pulses needs to be synched with the incomming 
-          *              PWM signals. This synchronization needs to be handled in the PAL.
-          * 
-          * @param[out]  co2ppm Average CO2 ppm concentration value from PWM pulse train (0 ppm to 10000 ppm)
+          * @details     The duty will return 0.00 if no duty is read (e.g.
+          *              polling mode). In case of error, the duty value will be
+          *              -1.00, and the function will return the corresponding
+          *              return code for diagnosis. 
+          *
+          * @note        The read out of PWM pulses needs to be synched with the
+          *              incoming PWM signals. This synchronization needs to be
+          *              handled in the PAL.
+          *
+          * @param[out]  duty PWM input duty cycle value from PWM
+          *                   single or train pulse average (00.00 % to 
+          *                   100.00 %)
           * @return      PAS CO2 error code
           * @retval      OK if success
           * @retval      INTF_ERROR if error
           */
-        virtual Error_t    getPWM      (int16_t & co2ppm) = 0;
+        virtual Error_t    getDuty  (double & duty) = 0;
 
 };
 

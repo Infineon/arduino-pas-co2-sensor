@@ -16,7 +16,7 @@
  */
 
 #define PAS_CO2_FRMWK_ARDUINO   0x00U                       /**< Arduino */
-#define PAS_CO2_FRMWK_PSOC6     0x01U                       /**< PSoC6 HAL */
+#define PAS_CO2_FRMWK_PSOC6HAL  0x01U                       /**< PSoC6 HAL */
 /** @} */
 
 /**

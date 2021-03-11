@@ -1,54 +1,43 @@
 # PAS CO2 Sensor Arduino Library
 
-[![Build Status](https://travis-ci.com/Infineon/arduino-pas-co2-sensor.svg?branch=master)](https://travis-ci.com/Infineon/arduino-pas-co2-sensor)
+<!-- badges for github actions -->
 
-Arduino library of Infineon **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2** miniaturized sensor.
+Arduino library of Infineon's **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2** miniaturized sensor.
 
 ### Supported Sensor Boards
 <table>
     <tr>
-        <td align="center"><img src="" width=200></td>
-        <td align="center"><img  src="" width=200></td>
-        <td align="center"><img src="" width=200></td>
+        <td align="center"><img src="https://github.com/Infineon/pas-co2-sensor/wiki/img/pas-co2-s2go-front.jpg" width=200></td>
+        <td align="center"><img  src="https://github.com/Infineon/pas-co2-sensor/wiki/img/pas-co2-module.png" width=200></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="">PAS CO2 Shield 2Go</a></td>
-        <td style="text-align: center"><a href="">PAS 2Go Kit</a></td>
+        <td style="text-align: center"><a href="">PAS CO2 Shield2Go</a></td>
+        <td style="text-align: center"><a href="">PAS CO2 Module Stand-alone</a></td>
     </tr>
 </table>
 
-### Supported Host Controllers
+### Supported Hardware Platforms
 
-This library should be supported by any Arduino controller including at least
-one the interfaces required to operate the sensor (I2C, UART or GPIO input or Capture Unit)
+The library should be supported by any Arduino platform based on the reference Arduino cores. 
 
-Just the following evaluation kits have been verified:
-- XMC2Go + Engineering samples :D
-- ...
+Check in this [link](https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms) the already verified (at least successfully built) platforms, and find out which boards are under CI build check [here]().
 
+### Getting Started
 
-### Getting Started (Serial interface)
-1. Install library (usual Arduino installation)
-2. Connect the device through the I2C interface to your Arduino Board
-3. Go to examples and run the oneshot.ino example
-
-4. Explore the rest of the examples to find out about the sensor and library features.
-
-### Serial API
-
-* startMeasure()
-* stopMeasure()
-* getCO2()
-* getDiagnosis()
-* calibrate()
-* reset();
-* getDeviceID()
+Find a getting started tutorial based on the PAS CO2 Shield2Go and the XMC 2Go eval board [here](https://github.com/Infineon/pas-co2-sensor/wiki/Ino-Getting-Started).
 
 ### More information
 
-The complete library and project documentation can be found in the **[Wiki or Doxygen ??](https://github.com/infineon/pas-co2-sensor/wiki/Home)** page.
+The complete relevant Arduino documentation (and more) can be found in the base XFP library [Wiki](https://github.com/infineon/pas-co2-sensor/wiki/Home):
 
-[Doxygen Documentation](somewhere)
+* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/Ino-Library-Installation"> Arduino Lib Installation</a><br> 
+* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/Ino-Examples">Arduino Examples</a><br>
+* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/Arduino-API">Arduino API</a><br>
+* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/PlatformIO">PlatformIO</a><br>
+
+### Contributing
+
+This is a release repository for the Arduino framework. The code basis is maintained and developed in the PAS CO2 Sensor Cross-Framework-Platform (XFP) library [repository](https://github.com/infineon/pas-co2-sensor). 
   
 ### License
 

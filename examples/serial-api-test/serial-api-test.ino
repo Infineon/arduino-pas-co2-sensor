@@ -4,14 +4,20 @@
 #include <pas-co2-pal-gpio-ino.hpp>
 #include <pas-co2-serial-ino.hpp>
 
-/* The interrupt pin definition is defined according to the hardware
-This will be moved to the pas-co2-platf-ino.hpp/cpp */
-
-#ifdef XMC1100_XMC2GO                                                   
-uint8_t intPin = 9;
+/**
+ * Select the serial interface:
+ * - I2C (TwoWire)
+ * - UART (HardwareSerial)
+ * By default the I2C interfaces is selected. 
+ * Compile with -DINO_HW_SERIAL to select the UART interface.
+ */
+#ifdef INO_HW_SERIAL
+HardwareSerial * bus = (HardwareSerial*) pltf->uart;
 #else
-uint8_t intPin = GPIOIno::unusedPin;
+TwoWire * bus = (TwoWire*) pltf->i2c;
 #endif
+
+PASCO2SerialIno cotwo(bus, pltf->inte);
 
 void setup()
 {
@@ -21,11 +27,7 @@ void setup()
   Serial.begin(115200);
   Serial.println("[arduino]       : serial initialized");
 
-  /**
-   * Serial API (I2C) Test
-   */
   TimerIno        t;
-  PASCO2SerialIno cotwo(nullptr, intPin);
   test_serialAPI(cotwo, t);
   cotwo.~PASCO2SerialIno();
 }

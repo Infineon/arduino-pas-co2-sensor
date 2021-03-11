@@ -9,6 +9,8 @@
 
 #include "pas-co2-pal-i2c-ino.hpp"
 
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
+
 #if IS_INTF(PAS_CO2_INTF_I2C)
 
 #include <stdarg.h>
@@ -17,7 +19,7 @@
 
 using namespace pasco2;
 
-#define PAS_CO2_I2C_PALINO_LOGGER_ENABLED 1
+#define PAS_CO2_I2C_PALINO_LOGGER_ENABLED 0
 
 #if ((PAS_CO2_LOGGER_ENABLED == 1) && (PAS_CO2_I2C_PALINO_LOGGER_ENABLED == 1))
 
@@ -175,13 +177,16 @@ Error_t I2CPALIno::read(const uint8_t slave7BAddr, const uint8_t memAddr, uint8_
         uint8_t written = wire->write(memAddr);
         if(written != 1)
         {
-             err = INTF_ERROR;
-             break;
+            PAS_CO2_I2C_PALINO_LOG_MSG("error write mem Address");
+            err = INTF_ERROR;
+            break;
         }
 
         if(0 != wire->endTransmission(false))
         {
+            PAS_CO2_I2C_PALINO_LOG_MSG("end transmission error");
             err = INTF_ERROR; 
+            break;
         }
 
         //uint8_t bytesRead = wire->requestFrom(slave7BAddr, length, memAddr, 1, true);
@@ -189,6 +194,7 @@ Error_t I2CPALIno::read(const uint8_t slave7BAddr, const uint8_t memAddr, uint8_
 
         if(bytesRead < length)
         {
+            PAS_CO2_I2C_PALINO_LOG_MSG("error bytesRead < length");
             err = INTF_ERROR;
             break;
         } 
@@ -196,6 +202,13 @@ Error_t I2CPALIno::read(const uint8_t slave7BAddr, const uint8_t memAddr, uint8_
         for(uint16_t i = 0; (i < length) && (wire->available() > 0) ; i++)
         {
             data[i] = wire->read();
+        }
+
+        if(0 != wire->endTransmission(true))
+        {
+            PAS_CO2_I2C_PALINO_LOG_MSG("end 2 transmission error");
+            err = INTF_ERROR; 
+            break;
         }
 
         length = bytesRead;
@@ -241,6 +254,7 @@ Error_t I2CPALIno::write(const uint8_t slave7BAddr, const uint8_t memAddr, const
 
         if(written != 1)
         {
+             PAS_CO2_I2C_PALINO_LOG_MSG("error write mem Address");
              err = INTF_ERROR;
              break;
         }
@@ -255,6 +269,7 @@ Error_t I2CPALIno::write(const uint8_t slave7BAddr, const uint8_t memAddr, const
 
         if(0 != wire->endTransmission(true))
         {
+            PAS_CO2_I2C_PALINO_LOG_MSG("end transmission error");
             err = INTF_ERROR;
         }
 
@@ -280,3 +295,4 @@ I2C i2c(static_cast<I2CPAL *>(&i2cpalino));
 }
 
 #endif /** PAS_CO2_INTF **/
+#endif /** PAS_CO2_FRAMEWORK **/

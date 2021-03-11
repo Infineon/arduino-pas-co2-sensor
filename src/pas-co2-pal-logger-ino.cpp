@@ -7,11 +7,13 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <Arduino.h>
 #include "pas-co2-pal-logger-ino.hpp"
+
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
 
 #if (PAS_CO2_LOGGER_ENABLED == 1)
 
+#include <Arduino.h>
 #include "pas-co2-logger.hpp"
 
 using namespace pasco2;
@@ -68,6 +70,7 @@ Error_t   LoggerIno::write(const uint8_t * log_data, uint32_t length)
   for(uint32_t i=0; i< length; i++) {
     Serial.print(str.charAt(i));
   }
+  
   return pasco2::OK;
 }
 
@@ -82,3 +85,4 @@ Logger    cotwo_log(static_cast<LoggerPAL*>(&logpalino));
 }
 
 #endif /* PAS_CO2_LOGGER_ENABLED */
+#endif /** PAS_CO2_FRAMEWORK **/

@@ -29,23 +29,60 @@ namespace pasco2
 class PWMSW : public PWM
 {
     public:
+ 
+        /**
+         * @brief   Measuring Mode 
+         */
+        enum Mode_t
+        {
+            MODE_POLLING,               /**< PWM Polling Mode */       
+            MODE_INTERRUPT              /**< PWM Interrupt Mode */
+        };
 
-                PWMSW   (GPIO  * const pwmIn, 
-                         Timer * const timer);
-                                 
-               ~PWMSW   ();
-    Error_t     init    ();
-    Error_t     deinit  ();
-    Error_t     getPMW  (); 
+                    PWMSW   (GPIO  * const pwmIn, 
+                             Timer * const timer,
+                             Mode_t        mode);
+                                    
+                   ~PWMSW   ();
+        Error_t     init    ();
+        Error_t     deinit  ();
+        Error_t     getDuty (double & duty); 
 
     private:
 
-        GPIO  const * pwmIn;
-        Timer const * timer;
+        GPIO  * const pwmIn;
+        Timer * const timer;
+        Mode_t        mode;
+
+        volatile bool risingEdgeEvent;                  
+        volatile bool fallingEdgeEvent;
+
+        static constexpr uint8_t pulseTrainLen = 160; /**< Pulse train length */
+
+        void poll      ();
+
+
+        typedef void (* cback_t)(void *);
+
+        static constexpr uint8_t   maxGPIOObjs = 4;             /**< Maximum number of instances which can register hardware interrupt */
+        static           uint8_t   idxNext;                     /**< Interrupt array allocation index*/
+        static           PWMSW   * objPtrVector[maxGPIOObjs];   /**< PWM object pointers vector */
+        static void              * fnPtrVector [maxGPIOObjs];   /**< PWM interrupt function handlers vector */
+
+    protected:
+
+               void         callback    ();
+
+        static void         int0Handler ();
+        static void         int1Handler ();
+        static void         int2Handler ();
+        static void         int3Handler ();
+
+        static void       * isrRegister (PWMSW *objPtr);
 };
 
 /** @} */
 
 }
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_I2C_H_ **/
+#endif /** PAS_CO2_PWM_SW_HPP_ **/

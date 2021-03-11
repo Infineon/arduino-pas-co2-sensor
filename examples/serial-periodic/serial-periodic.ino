@@ -1,13 +1,21 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
-#ifdef XMC1100_XMC2GO                                                   
-uint8_t intPin = 9;
+/**
+ * Select the serial interface:
+ * - I2C (TwoWire)
+ * - UART (HardwareSerial)
+ * By default the I2C interfaces is selected. 
+ * Compile with -DINO_HW_SERIAL to select the UART interface.
+ */
+#ifdef INO_HW_SERIAL
+HardwareSerial * bus = (HardwareSerial*) pltf->uart;
 #else
-uint8_t intPin = GPIOIno::unusedPin; /* Set the interrupt pin to the rigth value */
+TwoWire * bus = (TwoWire*) pltf->i2c;
 #endif
 
-PASCO2SerialIno cotwo(&Wire, intPin);
+PASCO2SerialIno cotwo(bus, pltf->inte);
+
 int16_t co2ppm;
 Error_t err;
 

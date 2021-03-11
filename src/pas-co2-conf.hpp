@@ -50,13 +50,13 @@
 
 #define IS_INTF(_INTF_)             ((PAS_CO2_INTF & _INTF_) == _INTF_)     
 
-
 /**
  * @brief Logger enable
  */
 
 #ifndef PAS_CO2_LOGGER_ENABLED
 #define PAS_CO2_LOGGER_ENABLED      1           /**< (1) Enabled, (0) Disabled */
+#endif
 
 /**
  * @brief Enable for each module logger
@@ -64,13 +64,16 @@
 
 #if     (PAS_CO2_LOGGER_ENABLED == 1)
 
-#define PAS_CO2_I2C_LOGGER_ENABLED  1           /**< I2C module */
-#define PAS_CO2_REG_LOGGER_ENABLED  1           /**< Register module */
-#define PAS_CO2_APP_LOGGER_ENABLED  1           /**< Application level module */
+#define PAS_CO2_CORE_LOGGER_ENABLED     1           /**< Core module */
+#define PAS_CO2_SERIAL_LOGGER_ENABLED   1           /**< Serial module */
+#define PAS_CO2_I2C_LOGGER_ENABLED      1           /**< I2C module */
+#define PAS_CO2_UART_LOGGER_ENABLED     1           /**< UART module */
+#define PAS_CO2_PULSE_LOGGER_ENABLED    1           /**< Pulse module */
+#define PAS_CO2_PWM_LOGGER_ENABLED      1           /**< PWM SW module */
+#define PAS_CO2_REG_LOGGER_ENABLED      1           /**< Register module */
+#define PAS_CO2_APP_LOGGER_ENABLED      1           /**< Application level module */
 
 #endif 
-
-#endif
 
 #include "pas-co2-conf-dfl.hpp"
 

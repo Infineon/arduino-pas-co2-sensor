@@ -46,7 +46,7 @@ void Logger::deinit()
     logpal->deinit();
 }
 
-void Logger::printf(const char * format, ...)
+void Logger::print(const char * format, ...)
 {
     va_list args;
     char    str_buffer[LOGGER_MAX_WRITE_BUFF];
@@ -72,15 +72,14 @@ void Logger::printfModule(const char * format,
 {
     va_list args;
     uint8_t new_line_characters[2] = {LOGGER_NEW_LINE_CHAR};
-    char    color_buffer[LOGGER_MAX_WRITE_BUFF + 200];
-    char    temp_buffer[LOGGER_MAX_WRITE_BUFF];
+    char    color_buffer[LOGGER_MAX_WRITE_BUFF + 200] = {0};
+    char    temp_buffer[LOGGER_MAX_WRITE_BUFF] = {0};
 
 
     if ((NULL == format) || (NULL == module) || (NULL == color))
     {
         return;
     }
-
     va_start(args, color);
 
     vsprintf(temp_buffer, format, args);
@@ -102,8 +101,9 @@ void Logger::printModuleHex(const uint8_t  * vector,
                             const char     * module,
                             const char     * color)
 {
-    char     temp_buffer[LOGGER_MAX_WRITE_BUFF];
+    char     temp_buffer[LOGGER_MAX_WRITE_BUFF-200] = {0};
     uint32_t i;
+
     if(NULL == vector || length < 1)
     {
         return; 

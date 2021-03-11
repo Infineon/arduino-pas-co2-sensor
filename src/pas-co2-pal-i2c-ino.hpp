@@ -12,6 +12,8 @@
 
 #include "pas-co2-conf.hpp"
 
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
+
 #if IS_INTF(PAS_CO2_INTF_I2C)
 
 #include <Wire.h>
@@ -48,4 +50,5 @@ class I2CPALIno : virtual public I2CPAL
 extern I2CPALIno i2cpalino;
 
 #endif /** PAS_CO2_INTF **/
+#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PAL_I2C_INO_H_ **/

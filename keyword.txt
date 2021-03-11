@@ -6,6 +6,8 @@
 # Datatypes (KEYWORD1)
 #######################################
 Error_t KEYWORD1
+ABOC_t  KEYWORD1
+Diag_t  KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -29,6 +31,8 @@ getDeviceID KEYWORD2
 PASCO2  KEYWORD2
 PASCO2Serial  KEYWORD2
 PASCO2SerialIno KEYWORD2
+PASCO2Pulse  KEYWORD2
+PASCO2PulseIno KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
@@ -36,3 +40,10 @@ PASCO2SerialIno KEYWORD2
 
 OK LITERAL1
 INTF_ERROR  LITERAL1
+RESET_ERROR LITERAL1
+CONFIG_ERROR    LITERAL1
+IC_ERROR    LITERAL1
+IC_POWERON_ERROR    LITERAL1
+IC_POWER12V_ERROR   LITERAL1
+IC_TEMP_ERROR   LITERAL1
+IC_COMM_ERROR   LITERAL1 

@@ -7,6 +7,10 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include "pas-co2-conf.hpp"
+
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
+
 #include <Arduino.h>
 #include "pas-co2-pal-timer-ino.hpp"
 
@@ -57,7 +61,7 @@ inline  Error_t TimerIno::deinit()
  */
 inline Error_t TimerIno::start()
 {
-    curTime = millis();
+    curTime = micros();
     return pasco2::OK;
 }
 
@@ -69,7 +73,19 @@ inline Error_t TimerIno::start()
  */
 inline Error_t TimerIno::elapsed(uint32_t & elapsed)
 {
-    elapsed = (millis() - curTime);
+    elapsed = (uint32_t)((micros() - curTime)/1000);
+    return pasco2::OK;
+}
+
+/**
+ * @brief       Elapsed time since the timer was started in microseconds
+ * @param[out]  elapsed Time in microseconds
+ * @return      PAS CO2 error code
+ * @retval      OK if success (always)  
+ */
+inline Error_t TimerIno::elapsedMicro(uint32_t & elapsed)
+{
+    elapsed = (micros() - curTime);
     return pasco2::OK;
 }
 
@@ -107,3 +123,5 @@ inline Error_t TimerIno::delay(const uint32_t timeout)
 
     return pasco2::OK;
 }
+
+#endif /** PAS_CO2_FRAMEWORK **/

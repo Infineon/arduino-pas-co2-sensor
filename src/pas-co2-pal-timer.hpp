@@ -31,7 +31,7 @@ class Timer
          * @retval      OK if success
          * @retval      INIT_ERROR if error
          */
-        virtual  Error_t         init    () = 0;
+        virtual  Error_t         init           () = 0;
 
         /**
          * @brief       Deinitialiazes the timer
@@ -39,7 +39,7 @@ class Timer
          * @retval      OK if success
          * @retval      INIT_ERROR if error
          */
-        virtual  Error_t         deinit   () = 0;
+        virtual  Error_t         deinit         () = 0;
 
         /**
          * @brief       Starts the timer
@@ -47,16 +47,25 @@ class Timer
          * @retval      OK if success
          * @retval      INIT_ERROR if error
          */
-        virtual  Error_t         start   () = 0;
+        virtual  Error_t         start          () = 0;
 
         /**
-         * @brief       Elapsed time since the timer was started 
+         * @brief       Elapsed time since the timer was started in milliseconds
          * @param[out]  elapsed Time in milliseconds 
          * @return      PAS CO2 error code
          * @retval      OK if success
          * @retval      INIT_ERROR if error    
          */
-        virtual  Error_t         elapsed (uint32_t & elapsed) = 0;
+        virtual  Error_t         elapsed        (uint32_t & elapsed) = 0;
+
+        /**
+         * @brief       Elapsed time since the timer was started in microseconds
+         * @param[out]  elapsed Time in microseconds
+         * @return      PAS CO2 error code
+         * @retval      OK if success
+         * @retval      INIT_ERROR if error    
+         */
+        virtual  Error_t         elapsedMicro   (uint32_t & elapsed) = 0;
         
         /**
          * @brief       Stops the timer
@@ -64,7 +73,7 @@ class Timer
          * @retval      OK if success
          * @retval      INIT_ERROR if error
          */
-         virtual  Error_t         stop    () = 0;
+         virtual  Error_t         stop          () = 0;
         
         /**
          * @brief       Introduces a delay during the specified time    

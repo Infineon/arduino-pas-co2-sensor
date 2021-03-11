@@ -1,7 +1,21 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
-PASCO2SerialIno cotwo;
+/**
+ * Select the serial interface:
+ * - I2C (TwoWire)
+ * - UART (HardwareSerial)
+ * By default the I2C interfaces is selected. 
+ * Compile with -DINO_HW_SERIAL to select the UART interface.
+ */
+#ifdef INO_HW_SERIAL
+HardwareSerial * bus = (HardwareSerial*) pltf->uart;
+#else
+TwoWire * bus = (TwoWire*) pltf->i2c;
+#endif
+
+PASCO2SerialIno cotwo(bus);
+
 int16_t co2ppm;
 Error_t err;
 
@@ -31,8 +45,8 @@ void loop()
    *  getCO2() is called until the value is 
    *  available.  
    *  getCO2() returns 0 when no measurement 
-   *  result is yet avaiable. If returns a 
-   *  negative value if case of error.
+   *  result is yet available. It returns a 
+   *  negative value in case of error.
    */
 
   do

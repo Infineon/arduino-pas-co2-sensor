@@ -26,7 +26,7 @@ class Reg
     public:
 
         /**
-        * @name   Register Addreses
+        * @name   Register Addresses
         * @{
         */
         enum Addr_t
@@ -51,7 +51,7 @@ class Reg
         };
         /** @} */
 
-        static const uint8_t    regCount  = 0x10U;  /**< Number of registers */
+        static const uint8_t    regCount  = 0x11U;  /**< Number of registers */
                      uint8_t    regMap[regCount];   /**< Register map */
 
                     Reg                     ();

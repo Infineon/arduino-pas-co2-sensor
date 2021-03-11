@@ -24,17 +24,20 @@
 
 typedef struct 
 {   
-    TwoWire         * i2c;      /**< I2C interface*/
-    HardwareSerial  * uart;     /**< UART interface */
-    uint8_t         power3V3;   /**< Power supply VDD 3V3 pin */
-    uint8_t         power12V;   /**< Power supply VDD 12V pin */
-    uint8_t         pwmOutput;  /**< PWM output pin */
-    uint8_t         pwmEnable;  /**< PWM disable pin */ 
-    uint8_t         psel;       /**< Serial interface select pin*/
-    uint8_t         inte;       /**< Interrupt pin*/
+    TwoWire         * i2c;          /**< I2C interface*/
+    HardwareSerial  * uart;         /**< UART interface */
+    uint8_t         power3V3;       /**< Power supply VDD 3V3 pin */
+    uint8_t         power12V;       /**< Power supply VDD 12V pin */
+    uint8_t         pwm;            /**< PWM output pin */
+    uint8_t         pwmSelect;      /**< PWM disable pin */ 
+    uint8_t         protoSelect;    /**< Serial interface select pin*/
+    uint8_t         inte;           /**< Interrupt pin*/
 }PlatformIno_t;
 
-extern PlatformIno_t PASCO2_S2Go_XMC2Go;    /**< PAS CO2 shield 2Go + XMC2Go stack */
+extern PlatformIno_t * pltf;                /**< Arduino Default platform */
+
+extern PlatformIno_t PASCO2_S2Go_XMC2Go;    /**< PAS CO2 Shield2Go + XMC2Go stack */
+extern PlatformIno_t PASCO2_S2Go_XMC4700;   /**< PAS CO2 Shield2Go + MyIOT adapter (Socket 1) + XMC4700 relax kit */
 
 /** @} */
 

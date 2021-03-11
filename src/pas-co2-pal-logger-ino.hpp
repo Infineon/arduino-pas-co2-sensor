@@ -10,6 +10,10 @@
 #ifndef PAS_CO2_PAL_LOGGER_INO_H_
 #define PAS_CO2_PAL_LOGGER_INO_H_
 
+#include "pas-co2-conf.hpp"
+
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
+
 #include "pas-co2-pal-logger.hpp"
 
 #if (PAS_CO2_LOGGER_ENABLED == 1)
@@ -39,5 +43,5 @@ class LoggerIno : public LoggerPAL
 extern LoggerIno logpalino;
 
 #endif /* PAS_CO2_LOGGER_ENABLED */
-
+#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PAL_LOGGER_INO_H_ **/

@@ -12,6 +12,8 @@
 
 #include "pas-co2-types.hpp"
 
+#undef GPIO /* Avoid ambiguous definition with C macros */
+
 namespace pasco2
 {
 

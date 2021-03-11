@@ -16,6 +16,9 @@
 
 #include <stdint.h>
 #include "pas-co2-sbus.hpp"
+#include "pas-co2-pal-uart.hpp"
+
+#undef UART
 
 namespace pasco2
 {
@@ -29,9 +32,10 @@ class UART : public SBus
 {
     public:
 
-        class UARTPAL;
+        static const uint32_t dfltBaudrateBps = 115200;        /**< Default baudrate in bps */
 
-                 UART       (UARTPAL const * uartpal);
+                 UART       (UARTPAL  * const uartpal,
+                             uint32_t         baudrateBps = dfltBaudrateBps);
                 ~UART       (void);
 
         Error_t  init       (void);
@@ -47,7 +51,32 @@ class UART : public SBus
 
     private:
 
-        UARTPAL const * uartpal;     
+        UARTPAL * const uartpal;  
+        
+        uint32_t                         baudrateBps;
+        static const UARTPAL::DataBits_t dataBits            = UARTPAL::UART_8BITS;
+        static const UARTPAL::Parity_t   parity              = UARTPAL::UART_PARITY_NONE;
+        static const UARTPAL::StopBits_t stopBits            = UARTPAL::UART_1STOPBIT;
+
+    protected:
+
+                char    uint4ToHexChar             (const uint8_t   uint4);
+        
+        virtual void    assembleWriteRequestFrame  (const uint8_t   regAddr,
+                                                    const uint8_t   regVal,
+                                                          char    * frame);
+
+        virtual void    assembleReadRequestFrame   (const uint8_t   regAddr,
+                                                          char    * frame);
+
+        virtual uint8_t disassembleReadReplyFrame  (const char    * frame);
+
+        virtual bool    isAckFrame                 (const char    * frame,
+                                                    const uint8_t   len);
+
+        virtual bool    isNackFrame                (const char    * frame,
+                                                    const uint8_t   len);
+
 };
 
 /** @} */
@@ -55,7 +84,7 @@ class UART : public SBus
 /**
  * @brief 
  */
-extern UART pasco2_uart;
+// extern UART pasco2_uart;
 
 }
 

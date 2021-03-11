@@ -10,9 +10,37 @@
 #ifndef PAS_CO2_PAL_PWM_INO_H_
 #define PAS_CO2_PAL_PWM_INO_H_
 
+#include "pas-co2-conf.hpp"
+
+#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
+
+#if IS_INTF(PAS_CO2_INTF_PULSE)
+
+#include <Arduino.h>
+#include "pas-co2-pwm-sw.hpp"
+#include "pas-co2-pal-gpio-ino.hpp"
+#include "pas-co2-pal-timer-ino.hpp"
+
+using namespace pasco2;
+
 /**
- * Coming soon!
+ * @addtogroup co2inopal
+ * @{
  */
 
+class PWMIno: virtual public PWMSW
+{
+    public:
 
+        PWMIno  (GPIOIno  * const pwmIn, 
+                 TimerIno * const timer,
+                 Mode_t           mode);
+
+       ~PWMIno  ();
+};
+
+/** @} */
+
+#endif /** PAS_CO2_INTF **/
+#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PAL_PWM_INO_HPP_ **/

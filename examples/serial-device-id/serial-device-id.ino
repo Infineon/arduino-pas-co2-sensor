@@ -1,7 +1,21 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
-PASCO2SerialIno cotwo;
+/**
+ * Select the serial interface:
+ * - I2C (TwoWire)
+ * - UART (HardwareSerial)
+ * By default the I2C interfaces is selected. 
+ * Compile with -DINO_HW_SERIAL to select the UART interface.
+ */
+#ifdef INO_HW_SERIAL
+HardwareSerial * bus = (HardwareSerial*) pltf->uart;
+#else
+TwoWire * bus = (TwoWire*) pltf->i2c;
+#endif
+
+PASCO2SerialIno cotwo(bus);
+
 uint8_t prodId, revId;
 
 void setup()

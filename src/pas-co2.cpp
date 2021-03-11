@@ -77,7 +77,7 @@ PASCO2::~PASCO2()
  * @brief       Initializes the sensor hardware interfaces
  *
  * @note        The PAL provides init() and deinit() functions for each 
- *              platfom abstraction layer interface. 
+ *              platform abstraction layer interface. 
  *              Depending on the system design criteria, the init/deinitialization of these 
  *              interfaces might be done at OS level, and externally managed. 
  *              These functions will be then empty calls and always return successfully (OK).
@@ -551,13 +551,18 @@ Error_t PASCO2::softReset()
         reg.setSoftReset();
 
         err = sbus->write(Reg::REG_ADDR_SENS_RST, &(reg.regMap[Reg::REG_ADDR_SENS_RST]));
-        if (OK != err)
-            break;
+        /* In case of UART interface, there is no ACK for this command.
+           It will return error. This verification is omitted for UART.*/
+        if(SBus::Proto_t::BUS_PROTO_I2C == sbus->getProtocol())
+        {
+            if (OK != err)
+                break;
+        }
 
        /* Delay TODO: set right timing. Is this required? */
        if(nullptr != timer)
        {
-            err = timer->delay(1000);
+            err = timer->delay(2000);
             if (OK != err)
                 break;
         }
@@ -875,7 +880,7 @@ Error_t PASCO2::setPWMMode(PWMMode_t mode)
 /**
  * @brief       Sets the measurement period
  * 
- * @details     In continous mode, the sensor will perform measurement with this period.         
+ * @details     In continuous mode, the sensor will perform measurement with this period.         
  * 
  * @warning     Serial interface required. 
  *              If unavailable the function does nothing and returns without error (OK) 
@@ -936,7 +941,7 @@ Error_t PASCO2::setMeasPeriod(int16_t periodInSec)
  * @details     If both the serial and the pwm interfaces are provided, the
  *              serial interface will be used.
  * 
- * @param[out]  co2ppm  Variable to store the read co2 concretation value (in ppm)  
+ * @param[out]  co2ppm  Variable to store the read co2 concentration value (in ppm)  
  * @return      PAS CO2 error code
  * @retval      OK if success
  * @retval      INTF_ERROR if interface error
@@ -965,9 +970,12 @@ Error_t PASCO2::getCO2(int16_t & co2ppm)
         }
         else if(nullptr != pwm)
         {
-            err = pwm->getPWM(co2ppm);
+            double duty = 0.0;
+            err = pwm->getDuty(duty);
             if (OK != err)
                 break;
+
+            co2ppm = (int16_t)(100*duty);   /** 10000/100 */
         }
 
     } while (0);
@@ -1147,9 +1155,12 @@ Error_t PASCO2::enableInterrupt(void (*cback) (void *), Int_t intType,  IntIOCon
 
         if(intType > INT_DISABLED)
         {
-            err = interrupt->enableInt(cback);
-            if (OK != err)
-                break;
+            if(nullptr != cback)
+            {
+                err = interrupt->enableInt(cback);
+                if (OK != err)
+                    break;
+            }
         }
 
     } while (0);
@@ -1571,7 +1582,12 @@ Error_t PASCO2::postResetRestoreConfig(void)
         }
 
         /* Write registers back */
-        err = sbus->write(Reg::REG_ADDR_PROD_ID, &(reg.regMap[Reg::REG_ADDR_PROD_ID]), reg.regCount);
+        err = sbus->write(Reg::REG_ADDR_SENS_STS, &(reg.regMap[Reg::REG_ADDR_SENS_STS]), 4);
+        if (OK != err)
+            break;
+
+        /* Write registers back */
+        err = sbus->write(Reg::REG_ADDR_MEAS_STS, &(reg.regMap[Reg::REG_ADDR_MEAS_STS]), 8);
         if (OK != err)
             break;
 
