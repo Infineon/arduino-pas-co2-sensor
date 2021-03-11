@@ -20,7 +20,7 @@ Arduino library of Infineon's **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2**
 
 The library should be supported by any Arduino platform based on the reference Arduino cores. 
 
-Check in this [link](https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms) the already verified (at least successfully built) platforms, and find out which boards are under CI build check [here]().
+Check in this [link](https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms) the already verified (at least successfully built) platforms, and find out which boards are under CI build check [here](https://github.com/Infineon/arduino-pas-co2-sensor/blob/master/.github/workflows/build-check.ym).
 
 ### Getting Started
 
