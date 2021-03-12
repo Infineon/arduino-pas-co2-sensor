@@ -1,6 +1,6 @@
 # PAS CO2 Sensor Arduino Library
 
-<!-- badges for github actions -->
+![build-check](https://github.com/github/arduino-pas-co2-sensor/actions/workflows/build-check.yml/badge.svg)
 
 Arduino library of Infineon's **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2** miniaturized sensor.
 
@@ -11,8 +11,8 @@ Arduino library of Infineon's **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2**
         <td align="center"><img  src="https://github.com/Infineon/pas-co2-sensor/wiki/img/pas-co2-module.png" width=200></td>
     </tr>
     <tr>
-        <td style="text-align: center"><a href="">PAS CO2 Shield2Go</a></td>
-        <td style="text-align: center"><a href="">PAS CO2 Module Stand-alone</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms#pas-co2-sensor-shield-2go">PAS CO2 Shield2Go</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms#pas-co2-sensor-stand-alone">PAS CO2 Module Stand-alone</a></td>
     </tr>
 </table>
 
@@ -20,7 +20,7 @@ Arduino library of Infineon's **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2**
 
 The library should be supported by any Arduino platform based on the reference Arduino cores. 
 
-Check in this [link](https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms) the already verified (at least successfully built) platforms, and find out which boards are under CI build check [here](https://github.com/Infineon/arduino-pas-co2-sensor/blob/master/.github/workflows/build-check.ym).
+Check in this [link](https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms) the already verified (at least successfully built) platforms, and find out which boards are under CI build check [here](https://github.com/Infineon/arduino-pas-co2-sensor/blob/master/.github/workflows/build-check.yml).
 
 ### Getting Started
 
