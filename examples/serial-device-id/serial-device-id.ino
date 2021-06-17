@@ -24,7 +24,7 @@ void setup()
   Serial.println("pas co2 serial initialized");
   
   Error_t err = cotwo.getDeviceID(prodId, revId);
-  if(OK != err)
+  if(pasco2::OK != err)
   {
     Serial.print("error: ");
     Serial.println(err);

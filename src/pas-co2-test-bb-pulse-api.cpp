@@ -10,6 +10,8 @@
 #include "pas-co2-test-bb.hpp"
 #include "pas-co2-logger.hpp"
 
+#if IS_INTF(PAS_CO2_INTF_PULSE)
+
 volatile static bool intFlag = false;
 static void isr(void *)
 {
@@ -121,3 +123,5 @@ void test_pulseAPI(PASCO2Pulse & cotwo, Timer & timer)
     /* Deinitialize timer */
     timer.deinit();
 }
+
+#endif /* PAS_CO2_PULSE_ENABLED */

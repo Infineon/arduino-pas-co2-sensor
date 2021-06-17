@@ -11,6 +11,7 @@
 #include "pas-co2-serial.hpp"
 #include "pas-co2-logger.hpp"
 
+#if IS_INTF(PAS_CO2_INTF_SERIAL)
 
 volatile static bool intFlag = false;
 static void isr(void *)
@@ -180,3 +181,4 @@ void test_serialAPI(PASCO2Serial & cotwo, Timer & timer)
     /* Deinitialize timer */
     timer.deinit();
 }
+#endif /* PAS_CO2_SERIAL_ENABLED */

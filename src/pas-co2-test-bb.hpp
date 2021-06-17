@@ -23,7 +23,13 @@
     }\
 }
 
+
+#if IS_INTF(PAS_CO2_INTF_SERIAL)
 void test_serialAPI     (PASCO2Serial & cotwo, Timer & timer);
+#endif /* PAS_CO2_SERIAL_ENABLED */
+
+#if IS_INTF(PAS_CO2_INTF_PULSE)
 void test_pulseAPI      (PASCO2Pulse  & cotwo, Timer & timer);
+#endif /* PAS_CO2_PULSE_ENABLED */
 
 #endif /** PAS_CO2_TEST_BB_H_ **/

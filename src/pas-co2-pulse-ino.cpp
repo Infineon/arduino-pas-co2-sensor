@@ -11,9 +11,9 @@
 
 #if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
 
-using namespace pasco2;
-
 #if IS_INTF(PAS_CO2_INTF_PULSE)
+
+using namespace pasco2;
 
 /**
  * @brief      PAS CO2 Pulse Arduino Constructor

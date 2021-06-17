@@ -31,7 +31,7 @@ void setup()
   Serial.println("pas co2 serial initialized");
 
   err = cotwo.startMeasure(7, 0, isr);
-  if(OK != err)
+  if(pasco2::OK != err)
   {
     Serial.print("start measure error: ");
     Serial.println(err);
@@ -46,7 +46,7 @@ void loop()
     intFlag = false;
 
     err = cotwo.getCO2(co2ppm);
-    if(OK != err)
+    if(pasco2::OK != err)
     {
       Serial.print("get co2 error: ");
       Serial.println(err);

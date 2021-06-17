@@ -26,7 +26,7 @@ void setup()
   Serial.println("pas co2 serial initialized");
 
   Error_t err = cotwo.calibrate(aboc, abocRef, pressRef);
-  if(OK != err)
+  if(pasco2::OK != err)
   {
     Serial.print("error: ");
     Serial.println(err);

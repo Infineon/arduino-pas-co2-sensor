@@ -17,6 +17,10 @@
 #include <stdint.h>
 #include "pas-co2-types.hpp"
 
+#undef UART_PARITY_NONE
+#undef UART_PARITY_ODD
+#undef UART_PARITY_EVEN
+
 namespace pasco2
 {
 

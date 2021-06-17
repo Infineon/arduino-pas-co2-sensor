@@ -30,7 +30,7 @@ void loop()
 
   /* Trigger the measure with startMeasure() */
   err = cotwo.startMeasure();
-  if(OK != err)
+  if(pasco2::OK != err)
   {
     Serial.print("error: ");
     Serial.println(err);
@@ -52,7 +52,7 @@ void loop()
   do
   {
     err = cotwo.getCO2(co2ppm);
-    if(OK != err)
+    if(pasco2::OK != err)
     {
       Serial.print("error: ");
       Serial.println(err);
