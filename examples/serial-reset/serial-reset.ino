@@ -18,7 +18,7 @@ PASCO2SerialIno cotwo(bus);
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("pas co2 serial initialized");
 
   Error_t err = cotwo.reset();

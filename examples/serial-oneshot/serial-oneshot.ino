@@ -21,7 +21,7 @@ Error_t err;
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("pas co2 serial initialized");
 }
 

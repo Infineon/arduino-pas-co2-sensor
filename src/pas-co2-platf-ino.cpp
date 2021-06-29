@@ -7,11 +7,10 @@
  * SPDX-License-Identifier: MIT
  */
 
+
 #include "pas-co2-platf-ino.hpp"
-
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #include "pas-co2-pal-gpio-ino.hpp"
+#include "pas-co2-conf.hpp"
 
 /**
  * @brief Default platform selection by conditional compiling
@@ -92,6 +91,4 @@ PlatformIno_t PASCO2_dflt_pltf = {
 PlatformIno_t * pltf = &PASCO2_dflt_pltf;
 
 #endif
-
-#endif /** PAS_CO2_FRAMEWORK **/
 

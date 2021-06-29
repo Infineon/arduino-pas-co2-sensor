@@ -28,14 +28,6 @@
 #include "pas-co2-conf-opts.hpp"
 
 /**
- * @brief Development framework
- */
-
-#ifndef PAS_CO2_FRAMEWORK 
-#define PAS_CO2_FRAMEWORK           PAS_CO2_FRMWK_ARDUINO  
-#endif
-
-/**
  * @brief Sensor physical interface
  */
 
@@ -64,13 +56,13 @@
 
 #if     (PAS_CO2_LOGGER_ENABLED == 1)
 
-#define PAS_CO2_CORE_LOGGER_ENABLED     1           /**< Core module */
-#define PAS_CO2_SERIAL_LOGGER_ENABLED   1           /**< Serial module */
-#define PAS_CO2_I2C_LOGGER_ENABLED      1           /**< I2C module */
-#define PAS_CO2_UART_LOGGER_ENABLED     1           /**< UART module */
-#define PAS_CO2_PULSE_LOGGER_ENABLED    1           /**< Pulse module */
-#define PAS_CO2_PWM_LOGGER_ENABLED      1           /**< PWM SW module */
-#define PAS_CO2_REG_LOGGER_ENABLED      1           /**< Register module */
+#define PAS_CO2_CORE_LOGGER_ENABLED     0           /**< Core module */
+#define PAS_CO2_SERIAL_LOGGER_ENABLED   0           /**< Serial module */
+#define PAS_CO2_I2C_LOGGER_ENABLED      0           /**< I2C module */
+#define PAS_CO2_UART_LOGGER_ENABLED     0           /**< UART module */
+#define PAS_CO2_PULSE_LOGGER_ENABLED    0           /**< Pulse module */
+#define PAS_CO2_PWM_LOGGER_ENABLED      0           /**< PWM SW module */
+#define PAS_CO2_REG_LOGGER_ENABLED      0           /**< Register module */
 #define PAS_CO2_APP_LOGGER_ENABLED      1           /**< Application level module */
 
 #endif 

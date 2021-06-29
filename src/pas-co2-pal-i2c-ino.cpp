@@ -9,8 +9,6 @@
 
 #include "pas-co2-pal-i2c-ino.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #if IS_INTF(PAS_CO2_INTF_I2C)
 
 #include <stdarg.h>
@@ -295,4 +293,3 @@ I2C i2c(static_cast<I2CPAL *>(&i2cpalino));
 }
 
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_FRAMEWORK **/

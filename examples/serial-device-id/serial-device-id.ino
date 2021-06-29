@@ -20,7 +20,7 @@ uint8_t prodId, revId;
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("pas co2 serial initialized");
   
   Error_t err = cotwo.getDeviceID(prodId, revId);

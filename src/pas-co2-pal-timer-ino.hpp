@@ -10,10 +10,6 @@
 #ifndef PAS_CO2_PAL_TIMER_INO_HPP_
 #define PAS_CO2_PAL_TIMER_INO_HPP_
 
-#include "pas-co2-conf.hpp"
-
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #include "pas-co2-pal-timer.hpp"
 
 using namespace pasco2;
@@ -42,5 +38,4 @@ class TimerIno: virtual public Timer
 
 /** @} */
 
-#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PAL_TIMER_INO_HPP_ **/

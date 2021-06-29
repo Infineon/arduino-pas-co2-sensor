@@ -8,9 +8,6 @@
  */
 
 #include "pas-co2-pal-gpio-ino.hpp"
-
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 
 using namespace pasco2;
@@ -169,5 +166,3 @@ inline Error_t GPIOIno::disable()
     }
     return pasco2::OK;
 }
-
-#endif /** PAS_CO2_FRAMEWORK **/

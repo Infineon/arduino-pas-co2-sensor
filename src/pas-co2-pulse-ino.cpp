@@ -9,8 +9,6 @@
 
 #include "pas-co2-pulse-ino.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #if IS_INTF(PAS_CO2_INTF_PULSE)
 
 using namespace pasco2;
@@ -118,4 +116,3 @@ PASCO2PulseIno::~PASCO2PulseIno()
 }
 
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_FRAMEWORK **/

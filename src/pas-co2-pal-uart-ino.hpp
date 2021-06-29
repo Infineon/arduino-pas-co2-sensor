@@ -12,8 +12,6 @@
 
 #include "pas-co2-conf.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #if IS_INTF(PAS_CO2_INTF_UART)
 
 #include <Arduino.h>
@@ -56,5 +54,4 @@ class UARTPALIno : virtual public UARTPAL
 extern UARTPALIno uartpalino;
 
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PAL_UART_INO_HPP_ **/

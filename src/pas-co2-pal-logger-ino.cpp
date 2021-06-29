@@ -9,8 +9,6 @@
 
 #include "pas-co2-pal-logger-ino.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #if (PAS_CO2_LOGGER_ENABLED == 1)
 
 #include <Arduino.h>
@@ -85,4 +83,3 @@ Logger    cotwo_log(static_cast<LoggerPAL*>(&logpalino));
 }
 
 #endif /* PAS_CO2_LOGGER_ENABLED */
-#endif /** PAS_CO2_FRAMEWORK **/

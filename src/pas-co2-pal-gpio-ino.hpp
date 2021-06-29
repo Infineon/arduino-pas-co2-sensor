@@ -10,10 +10,6 @@
 #ifndef PAS_CO2_PAL_GPIO_INO_HPP_
 #define PAS_CO2_PAL_GPIO_INO_HPP_
 
-#include "pas-co2-conf.hpp"
-
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #include <stdint.h>
 #include "pas-co2-pal-gpio.hpp"
 
@@ -52,6 +48,5 @@ class GPIOIno : virtual public pasco2::GPIO
 
 /** @} */
 
-#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PAL_GPIO_INO_HPP_ **/
 

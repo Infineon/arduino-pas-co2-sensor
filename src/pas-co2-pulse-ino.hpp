@@ -12,7 +12,6 @@
 
 #include "pas-co2-conf.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
 #if IS_INTF(PAS_CO2_INTF_PULSE)
 
 #include <Arduino.h>
@@ -79,5 +78,4 @@ class PASCO2PulseIno : public PASCO2Pulse
 /** @} */
 
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PULSE_INO_HPP_ **/

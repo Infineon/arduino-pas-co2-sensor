@@ -9,11 +9,9 @@
 
 #include "pas-co2-serial-ino.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
+#if IS_INTF(PAS_CO2_INTF_SERIAL)
 
 using namespace pasco2;
-
-#if IS_INTF(PAS_CO2_INTF_SERIAL)
 
 #if IS_INTF(PAS_CO2_INTF_I2C)
 
@@ -177,4 +175,3 @@ PASCO2SerialIno::~PASCO2SerialIno()
 }
 
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_FRAMEWORK **/

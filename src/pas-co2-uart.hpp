@@ -32,7 +32,7 @@ class UART : public SBus
 {
     public:
 
-        static const uint32_t dfltBaudrateBps = 115200;        /**< Default baudrate in bps */
+        static const uint32_t dfltBaudrateBps = 9600;        /**< Default baudrate in bps */
 
                  UART       (UARTPAL  * const uartpal,
                              uint32_t         baudrateBps = dfltBaudrateBps);

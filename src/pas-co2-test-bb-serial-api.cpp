@@ -56,20 +56,16 @@ void test_serialAPI(PASCO2Serial & cotwo, Timer & timer)
 
         PAS_CO2_APP_LOG_MSG("reading co2 value... ");
         int16_t  co2ppm = 0;
-        uint32_t etime;
-        timer.start();
-        while(0 >= co2ppm)
+        uint8_t iter = 0 ;
+        while(0 >= co2ppm && iter < 5)
         {
             /* Wait for 2.5 seconds */
             timer.delay(2500);
             /* Attempt value read if measurement has finished */
             err = cotwo.getCO2(co2ppm);
             /* Get CO2 timeout of 10 seconds*/
-            timer.elapsed(etime);
-            if(etime > 10000)
-                break;
+            iter++;
         }
-        timer.stop();
         ASSERT_ERROR_RET(err);
         PAS_CO2_APP_LOG_VAR("co2 ppm value -> %i",co2ppm);
         PAS_CO2_APP_LOG_MSG("co2 value read");
@@ -86,19 +82,16 @@ void test_serialAPI(PASCO2Serial & cotwo, Timer & timer)
         for (uint8_t i = 0; i < 3; i++)
         {
             co2ppm = 0;
-            timer.start();
-            while(0 >= co2ppm)
+            iter = 0;
+            while(0 >= co2ppm && iter < 4)
             {
                 /* Wait for 7 seconds */
                 timer.delay(7000);
                 /* Attempt value read if measurement has finished */
                 err = cotwo.getCO2(co2ppm);
                 /* Get CO2 timeout of 22 seconds*/
-                timer.elapsed(etime);
-                if(etime > 22000)
-                    break;
+                iter++;
             }
-            timer.stop();
             ASSERT_ERROR_RET(err);
             PAS_CO2_APP_LOG_VAR("co2 ppm value -> %i",co2ppm);
         }

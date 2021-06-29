@@ -11,15 +11,6 @@
 #define PAS_CO2_CONF_OPTS_HPP_
 
 /**
- * @name Development framewoks
- * @{
- */
-
-#define PAS_CO2_FRMWK_ARDUINO   0x00U                       /**< Arduino */
-#define PAS_CO2_FRMWK_PSOC6HAL  0x01U                       /**< PSoC6 HAL */
-/** @} */
-
-/**
  * @name Sensor interfaces
  * @{
  */

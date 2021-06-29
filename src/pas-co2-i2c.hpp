@@ -30,7 +30,7 @@ class I2C : public SBus
 {
     public:
 
-        static const uint32_t dfltFreq = 100000;    /**< Default I2C SCKL frequency */
+        static const uint32_t dfltFreq = 400000;    /**< Default I2C SCKL frequency */
 
                  I2C        (I2CPAL   * const i2cpal,
                              uint32_t   freqHz = dfltFreq);

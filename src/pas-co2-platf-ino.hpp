@@ -10,10 +10,6 @@
 #ifndef PAS_CO2_PLATF_INO_HPP_
 #define PAS_CO2_PLATF_INO_HPP_
 
-#include "pas-co2-conf.hpp"
-
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 #include <Wire.h>
 
@@ -41,5 +37,4 @@ extern PlatformIno_t PASCO2_S2Go_XMC4700;   /**< PAS CO2 Shield2Go + MyIOT adapt
 
 /** @} */
 
-#endif /** PAS_CO2_FRAMEWORK **/
 #endif /** PAS_CO2_PLATF_INO_HPP_ **/

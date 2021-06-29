@@ -7,10 +7,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "pas-co2-conf.hpp"
-
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 #include "pas-co2-pal-timer-ino.hpp"
 
@@ -123,5 +119,3 @@ inline Error_t TimerIno::delay(const uint32_t timeout)
 
     return pasco2::OK;
 }
-
-#endif /** PAS_CO2_FRAMEWORK **/

@@ -12,10 +12,6 @@
 
 #include "pas-co2-conf-opts.hpp"
 
-#ifndef PAS_CO2_FRAMEWORK 
-#error  "PAS CO2 error framework undefined"     /**< PAS CO2 framework must be defined in conf. or at compilation */
-#endif
-
 #ifndef PAS_CO2_INTF 
 #define PAS_CO2_INTF                PAS_CO2_INTF_ALL   
 #endif

@@ -9,8 +9,6 @@
 
 #include "pas-co2-conf.hpp"
 
-#if (PAS_CO2_FRAMEWORK == PAS_CO2_FRMWK_ARDUINO)
-
 #if IS_INTF(PAS_CO2_INTF_UART)                  
 
 #include "pas-co2-pal-uart-ino.hpp"
@@ -401,4 +399,3 @@ Error_t UARTPALIno::waitReceive(uint16_t  bytesRcvd,
 }
 
 #endif /** PAS_CO2_INTF **/
-#endif /** PAS_CO2_FRAMEWORK **/

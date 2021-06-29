@@ -27,7 +27,7 @@ void isr (void * )
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("pas co2 serial initialized");
 
   err = cotwo.startMeasure(10, 25000, isr);
