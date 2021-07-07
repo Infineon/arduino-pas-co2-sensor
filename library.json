@@ -7,7 +7,7 @@
        "url":"https://github.com/Infineon/arduino-pas-co2-sensor.git",
        "branch":"master"
     },
-    "version":"1.0.2",
+    "version":"1.0.3",
     "license":"MIT",
     "frameworks":"arduino",
     "platforms":[  
