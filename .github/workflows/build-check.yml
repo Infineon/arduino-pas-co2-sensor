@@ -13,18 +13,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        
-        board: 
-          -fqbn: arduino:avr:uno
-          -fqbn: Infineon:arm:XMC1100_XMC2GO
-          -fqbn: Infineon:arm:XMC1100_Boot_Kit
-          -fqbn: esp32:esp32:featheresp32
+      os: [ ubuntu-latest, windows-latest ]
+       
+      board: 
+        -fqbn: arduino:avr:uno
+        -fqbn: Infineon:arm:XMC1100_XMC2GO
+        -fqbn: Infineon:arm:XMC1100_Boot_Kit
+        -fqbn: esp32:esp32:featheresp32
 
     steps:
       - name: Checkout
         use: actions/checkout@v2
-        
+    
       - name: Build examples 
         uses: arduino/compile-sketches@v1
         with:
