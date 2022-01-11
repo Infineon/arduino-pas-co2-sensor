@@ -9,9 +9,9 @@
  * Compile with -DINO_HW_SERIAL to select the UART interface.
  */
 #ifdef INO_HW_SERIAL
-HardwareSerial * bus = (HardwareSerial*) pltf->uart;
+HardwareSerial * bus = (HardwareSerial*) PASCO2_INO_UART;
 #else
-TwoWire * bus = (TwoWire*) pltf->i2c;
+TwoWire * bus = (TwoWire*) PASCO2_INO_I2C;
 #endif
 
 PASCO2SerialIno cotwo(bus);
@@ -22,21 +22,32 @@ Error_t err;
 void setup()
 {
   Serial.begin(9600);
+  delay(500);
   Serial.println("pas co2 serial initialized");
+
+  err = cotwo.begin();
+  if(XENSIV_PASCO2_OK != err)
+  {
+    Serial.print("initialization error: ");
+    Serial.println(err);
+  }
+
 }
 
 void loop()
 {
 
-  /* Trigger the measure with startMeasure() */
+  /* 
+   * Trigger the measure.
+   */
   err = cotwo.startMeasure();
-  if(pasco2::OK != err)
+  if(XENSIV_PASCO2_OK != err)
   {
     Serial.print("error: ");
     Serial.println(err);
   }
 
-  /* Wait for the value to be ready */
+  /* Wait for the value to be ready. */
   delay(5000);
 
   co2ppm = 0;
@@ -52,7 +63,7 @@ void loop()
   do
   {
     err = cotwo.getCO2(co2ppm);
-    if(pasco2::OK != err)
+    if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("error: ");
       Serial.println(err);

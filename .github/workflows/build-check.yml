@@ -13,19 +13,11 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        example: [examples/pulse-api-test/pulse-api-test.ino,
-                  examples/pulse-interrupt/pulse-interrupt.ino,
-                  examples/pulse-polling/pulse-polling.ino, 
-                  examples/pulse-reset/pulse-reset.ino,
-                  examples/serial-alarm/serial-alarm.ino,
-                  examples/serial-api-test/serial-api-test.ino,
+        example: [examples/serial-alarm/serial-alarm.ino,
                   examples/serial-calibrate/serial-calibrate.ino,
                   examples/serial-device-id/serial-device-id.ino,
-                  examples/serial-calibrate/serial-calibrate.ino,
-                  examples/serial-diagnosis/serial-diagnosis.ino,
                   examples/serial-oneshot/serial-oneshot.ino,
-                  examples/serial-periodic/serial-periodic.ino,
-                  examples/serial-reset/serial-reset.ino]
+                  examples/serial-periodic/serial-periodic.ino]
 
     steps:
     - uses: actions/checkout@v2

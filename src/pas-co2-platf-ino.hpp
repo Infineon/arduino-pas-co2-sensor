@@ -1,8 +1,7 @@
 /** 
  * @file        pas-co2-platf-ino.hpp
  * @brief       PAS CO2 Arduino Hardware Platforms
- * @date        July 2020
- * @copyright   Copyright (c) 2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT
  */
@@ -18,22 +17,35 @@
  * @{
  */
 
-typedef struct 
-{   
-    TwoWire         * i2c;          /**< I2C interface*/
-    HardwareSerial  * uart;         /**< UART interface */
-    uint8_t         power3V3;       /**< Power supply VDD 3V3 pin */
-    uint8_t         power12V;       /**< Power supply VDD 12V pin */
-    uint8_t         pwm;            /**< PWM output pin */
-    uint8_t         pwmSelect;      /**< PWM disable pin */ 
-    uint8_t         protoSelect;    /**< Serial interface select pin*/
-    uint8_t         inte;           /**< Interrupt pin*/
-}PlatformIno_t;
+/**
+ * @brief Default platform selection by conditional compiling
+ */ 
 
-extern PlatformIno_t * pltf;                /**< Arduino Default platform */
+#if defined(XMC1100_XMC2GO)             /**< XMC2Go */
 
-extern PlatformIno_t PASCO2_S2Go_XMC2Go;    /**< PAS CO2 Shield2Go + XMC2Go stack */
-extern PlatformIno_t PASCO2_S2Go_XMC4700;   /**< PAS CO2 Shield2Go + MyIOT adapter (Socket 1) + XMC4700 relax kit */
+#define PASCO2_INO_I2C      &Wire
+#define PASCO2_INO_UART     nullptr
+#define PASCO2_INO_INT      9
+
+#elif defined(XMC4700_Relax_Kit)        /**< XMC4700 relax kit */
+
+#define PASCO2_INO_I2C      &Wire
+#define PASCO2_INO_UART     &Serial1
+#define PASCO2_INO_INT      2
+
+#elif defined(XMC1100_Boot_Kit)         /**< XMC1100 boot kit */
+
+#define PASCO2_INO_I2C      &Wire
+#define PASCO2_INO_UART     nullptr
+#define PASCO2_INO_INT      2
+
+#else                                   /**<  Default Arduino */
+
+#define PASCO2_INO_I2C      &Wire
+#define PASCO2_INO_UART     nullptr
+#define PASCO2_INO_INT      0xFF        /**< unused pin */
+
+#endif
 
 /** @} */
 

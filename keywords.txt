@@ -1,0 +1,44 @@
+#######################################
+# Syntax Coloring Map For PAS CO2
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+Error_t KEYWORD1
+ABOC_t  KEYWORD1
+Diag_t  KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin   KEYWORD2
+end KEYWORD2
+startMeasure    KEYWORD2
+stopMeasure KEYWORD2
+getCO2  KEYWORD2
+getDiagnosis    KEYWORD2
+setABOC KEYWORD2
+setPressRef KEYWORD2
+reset   KEYWORD2
+getDeviceID KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+PASCO2  KEYWORD2
+PASCO2SerialIno KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+XENSIV_PASCO2_OK    LITERAL1
+XENSIV_PASCO2_ERR_COMM  LITERAL1
+XENSIV_PASCO2_ERR_WRITE_TOO_LARGE   LITERAL1
+XENSIV_PASCO2_ERR_NOT_READY LITERAL1
+XENSIV_PASCO2_ICCERR    LITERAL1
+XENSIV_PASCO2_ORVS  LITERAL1
+XENSIV_PASCO2_ORTMP LITERAL1
+XENSIV_PASCO2_READ_NRDY LITERAL1

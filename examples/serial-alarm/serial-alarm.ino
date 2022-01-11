@@ -9,12 +9,12 @@
  * Compile with -DINO_HW_SERIAL to select the UART interface.
  */
 #ifdef INO_HW_SERIAL
-HardwareSerial * bus = (HardwareSerial*) pltf->uart;
+HardwareSerial * bus = (HardwareSerial*) PASCO2_INO_UART;
 #else
-TwoWire * bus = (TwoWire*) pltf->i2c;
+TwoWire * bus = (TwoWire*) PASCO2_INO_I2C;
 #endif
 
-PASCO2SerialIno cotwo(bus, pltf->inte);
+PASCO2SerialIno cotwo(bus, PASCO2_INO_INT);
 
 int16_t co2ppm;
 Error_t err;
@@ -28,10 +28,23 @@ void isr (void * )
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("pas co2 serial initialized");
+  delay(500);
+  Serial.println("serial initialized");
 
+  err = cotwo.begin();
+  if(XENSIV_PASCO2_OK != err)
+  {
+    Serial.print("initialization error: ");
+    Serial.println(err);
+  }
+
+  /*
+   * Periodic measurement every 10 seconds.
+   * Interrupt alarm when the CO2 value 
+   * goes over 25000 ppm.
+   */
   err = cotwo.startMeasure(10, 25000, isr);
-  if(pasco2::OK != err)
+  if(XENSIV_PASCO2_OK != err)
   {
     Serial.print("start measure error: ");
     Serial.println(err);
@@ -40,6 +53,7 @@ void setup()
 
 void loop()
 {
+    /* Interrupt alarm requires a CO2 concentration above the threshold */
     Serial.println("USER ACTION REQUIRED --> increase co2 to 25000 PPM to trigger the alarm!!");
     while(false == intFlag) { };
 
@@ -47,7 +61,7 @@ void loop()
     intFlag = false;
 
     err = cotwo.getCO2(co2ppm);
-    if(pasco2::OK != err)
+    if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("get co2 error: ");
       Serial.println(err);
