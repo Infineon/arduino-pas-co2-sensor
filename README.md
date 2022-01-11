@@ -19,7 +19,7 @@ Other other installation alternatives [here](https://arduino-pas-co2-sensor.read
 
 ### API reference
 
-Discover all the API features and functions in the [API reference]().
+Discover all the API features and functions in the [API reference](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/api-ref.html).
 
 ### More information
 
@@ -27,6 +27,6 @@ More information can be found in the library [docs](https://arduino-pas-co2-sens
   
 ### License
 
-See the [LICENSE](LICENSE) file for more details.
+See the [LICENSE](LICENSE.md) file for more details.
 
 

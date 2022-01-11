@@ -104,8 +104,10 @@ Error_t PASCO2SerialIno::end()
     /**< Deinitialize sensor interface*/
     if(nullptr != i2c)
     {
+        #if !defined(ARDUINO_ARCH_ESP32)
         i2c->end();
-    }
+        #endif
+    }   
     else if(nullptr != uart)
     {
         uart->end();

@@ -28,7 +28,7 @@ int32_t xensiv_pasco2_plat_i2c_transfer(void * ctx, uint16_t dev_addr, const uin
     TwoWire * wire = (TwoWire *)ctx;
     bool send_stop = (rx_buffer != NULL) ? false : true;
     
-    wire->beginTransmission(dev_addr);
+    wire->beginTransmission((uint8_t)dev_addr);
 
     uint8_t written = wire->write(tx_buffer, tx_len);
 
@@ -74,7 +74,7 @@ int32_t xensiv_pasco2_plat_uart_read(void * ctx, uint8_t * data, size_t len)
     uint32_t timeout = XENSIV_PASCO2_UART_TIMEOUT_MS;
     size_t xfer_len = 0;
 
-    while ((uart->available() < len) && (timeout > 0U))
+    while ((size_t)(uart->available() < len) && (timeout > 0U))
     {
         delay(1);
         timeout--;
