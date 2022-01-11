@@ -12,7 +12,7 @@ jobs:
     name: ${{ matrix.board.fqbn }}
     runs-on: ubuntu-latest
     strategy:
-    
+      fail-fast: false
       matrix:
         board: 
           - fqbn: "arduino:avr:uno"
