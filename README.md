@@ -15,7 +15,7 @@ Find a getting started tutorial based on the PAS CO2 Shield2Go and the XMC 2Go e
 
 Look for ```pas-co2-sensor``` in the Arduino library manager.
 
-Other other installation alternatives [here](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/lib-install.html).
+Other installation alternatives [here](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/lib-install.html).
 
 ### API reference
 
