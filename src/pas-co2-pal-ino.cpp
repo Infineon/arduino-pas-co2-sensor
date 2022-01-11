@@ -74,7 +74,7 @@ int32_t xensiv_pasco2_plat_uart_read(void * ctx, uint8_t * data, size_t len)
     uint32_t timeout = XENSIV_PASCO2_UART_TIMEOUT_MS;
     size_t xfer_len = 0;
 
-    while ((size_t)(uart->available() < len) && (timeout > 0U))
+    while (((size_t)(uart->available()) < len) && (timeout > 0U))
     {
         delay(1);
         timeout--;
