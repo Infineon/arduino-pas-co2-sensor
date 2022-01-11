@@ -29,7 +29,7 @@ jobs:
               platform-name: arduino:avr
             platforms: |
               # Install Arduino Avr Boards via Boards Manager
-              - name: ardiuno:avr
+              - name: arduino:avr
               
           - board:
               platform-name: Infineon:arm
