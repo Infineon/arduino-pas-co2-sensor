@@ -14,12 +14,11 @@ jobs:
     strategy:
     
       matrix:
-      
         board: 
-          -fqbn: arduino:avr:uno
-          -fqbn: Infineon:arm:XMC1100_XMC2GO
-          -fqbn: Infineon:arm:XMC1100_Boot_Kit
-          -fqbn: esp32:esp32:featheresp32
+          - fqbn: arduino:avr:uno
+          - fqbn: Infineon:arm:XMC1100_XMC2GO
+          - fqbn: Infineon:arm:XMC1100_Boot_Kit
+          - fqbn: esp32:esp32:featheresp32
 
     steps:
       - name: Checkout
@@ -29,7 +28,7 @@ jobs:
         uses: arduino/compile-sketches@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          fqbn: ${{matrix.board.fqbn}}
+          fqbn: ${{ matrix.board.fqbn }}
           platforms: |
             # Use Boards Manager to install the latest release of the platform to get the toolchain.
             - name: Infineon:arm
