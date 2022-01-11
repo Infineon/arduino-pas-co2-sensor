@@ -9,41 +9,30 @@ on:
       
 jobs:
   build:
+    name: ${{ matrix.board.fqbn }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        example: [examples/serial-alarm/serial-alarm.ino,
-                  examples/serial-calibrate/serial-calibrate.ino,
-                  examples/serial-device-id/serial-device-id.ino,
-                  examples/serial-oneshot/serial-oneshot.ino,
-                  examples/serial-periodic/serial-periodic.ino]
+        
+        board: 
+          -fqbn: arduino:avr:uno
+          -fqbn: Infineon:arm:XMC1100_XMC2GO
+          -fqbn: Infineon:arm:XMC1100_Boot_Kit
+          -fqbn: esp32:esp32:featheresp32
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Cache pip
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    - name: Chache PlatformIO
-      uses: actions/cache@v2
-      with:
-        path: ~/.platformio
-        key:  ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-
-    - name: Install PlatformIO
-      run: |
-        python -m pip install --upgrade pip
-        pip install --upgrade platformio
-        pio platform install -f infineonxmc@1.1.5
-        pio platform install -f atmelavr@2.0.0
-    - name: Run PlatformIO
-      run: pio ci --lib="." --board=xmc1100_boot_kit --board=xmc1100_xmc2go --board=uno
-      env:
-        PLATFORMIO_CI_SRC: ${{ matrix.example }}
+      - name: Checkout
+        use: actions/checkout@v2
+        
+      - name: Build examples 
+        uses: arduino/compile-sketches@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fqbn: ${{matrix.board.fqbn}}
+          platforms: |
+            # Use Boards Manager to install the latest release of the platform to get the toolchain.
+            - name: Infineon:arm
+              source-url: https://github.com/Infineon/XMC-for-Arduino/releases/latest/download/package_infineon_index.json
+            - source-path: ./
+              name: Infineon:arm
