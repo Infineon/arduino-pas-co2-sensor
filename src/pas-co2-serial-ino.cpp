@@ -14,9 +14,19 @@
 #define INO_ASSERT_RET(x)   if( x != XENSIV_PASCO2_OK ) { return x; }
 
 /**
+ * @brief   External serial interface init and deinit
+ * 
+ * @details Comment this define for the serial interface initialization
+ *          and denitialization (i2c and uart) to be handled by the begin()
+ *          and end() class function respectively 
+ * 
+ */
+#define PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
+
+/**
  * @brief      PAS CO2 Serial I2C Arduino Constructor
  *
- * @param[in]   wire    TwoWire interface instance
+ * @param[in]   wire    TwoWire interface instance. Default is the Arduino primary Wire instance.
  * @param[in]   intPin  Interrupt pin. Default is UnusedPin         
  * @pre         None
  */
@@ -56,9 +66,11 @@ PASCO2SerialIno::~PASCO2SerialIno()
 /**
  * @brief   Begins the sensor
  * 
- * @details Initializes the serial interface and interrupt pin if used.
+ * @details Initializes the serial interface if the initialization
+ *          is delegated to the PASCO2Serial class.
  *          Sets the I2C freq or UART baudrate to the default values 
  *          prior the serial interface initialization.
+ *          Initializes the interrupt pin if used.
  * 
  * @return  PAS CO2 error code
  * @retval  XENSIV_PASCO2_OK if success 
@@ -71,13 +83,17 @@ Error_t PASCO2SerialIno::begin()
     /* Initialize sensor interface */
     if(nullptr != i2c)
     {
-        i2c->setClock(freqHz);
+        #ifndef PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
         i2c->begin();
+        i2c->setClock(freqHz);
+        #endif 
         ret = xensiv_pasco2_init_i2c(&dev, i2c);
     }
     else if(nullptr != uart)
     {
+        #ifndef PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
         uart->begin(baudrateBps);   
+        #endif
         ret = xensiv_pasco2_init_uart(&dev, uart);
     }
 
@@ -93,7 +109,9 @@ Error_t PASCO2SerialIno::begin()
 /**
  * @brief   Ends the sensor
  * 
- * @details Deinitializes the serial interface and interrupt pin if used.
+ * @details Deinitializes the serial interface if the deinitialization
+ *          is delegated to the PASCO2Serial class. 
+ *          Deinitializes the interrupt pin if used.
  * 
  * @return  PAS CO2 error code
  * @retval  XENSIV_PASCO2_OK always
@@ -104,13 +122,17 @@ Error_t PASCO2SerialIno::end()
     /**< Deinitialize sensor interface*/
     if(nullptr != i2c)
     {
+        #ifndef PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
         #if !defined(ARDUINO_ARCH_ESP32)
         i2c->end();
+        #endif
         #endif
     }   
     else if(nullptr != uart)
     {
+        #ifndef PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
         uart->end();
+        #endif
     }
 
     /* Deinitialize interrupt pin */
@@ -131,38 +153,42 @@ Error_t PASCO2SerialIno::end()
  *              Single shot
  *              ---------------------------------------------------------------
  *              If the function is called with no arguments, the sensor
- *              will be trigger to perform a single shot measurement. 
- *              The users needs to poll with getCO2() until the CO2 value is 
- *              available and has been readed from the sensor.
+ *              will be triggered to perform a single shot measurement. 
+ *              The user needs to poll with getCO2() until the CO2 value is 
+ *              available and has been read out from the sensor.
  *              The CO2 concentration value read will be zero as long as 
- *              no value is available, or -1 if any error occurred in the 
+ *              no value is available or if any error occurred in the 
  *              readout attempt. 
  *              Polling example:
  * 
  *              @code
- *              PASCO2Serial cotwo(sbus, timer); 
+ *              PASCO2Serial cotwo(serial_intf); 
  *              int16_t   co2ppm;
+ * 
+ *              serial_intf.begin();
  * 
  *              cotwo.begin();              
  * 
  *              cotwo.startMeasure();
  * 
- *              do{ cotwo.getCO2(co2ppm); } while (co2ppm <= 0);  
+ *              do{ cotwo.getCO2(co2ppm); } while (co2ppm == 0);  
  *              @endcode
  * 
  *              Periodic measurement
  *              ---------------------------------------------------------------
  *              Periodic measurements (periodInSec) will configure the sensor
- *              to perform a measurements every desired period. Between 5 and
+ *              to perform a measurement every desired period. Between 5 and
  *              4095 seconds.
  *              Without further arguments, the user has to poll with getCO2()
  *              until the value is available. Any super loop or thread 
- *              routine, can just consist on reading the CO2 (getCO2()). 
+ *              routine, can just consists on reading the CO2 (getCO2()). 
  *              For example, measure every 5 minutes:
  * 
  *              @code
- *              PASCO2Serial cotwo(sbus, timer);
+ *              PASCO2Serial cotwo(serial_intf);
  *              int16_t   co2ppm;
+ * 
+ *              serial_intf.begin();
  * 
  *              cotwo.begin();  
  * 
@@ -171,7 +197,7 @@ Error_t PASCO2SerialIno::end()
  *              while(1)
  *              {
  *                  delay(300);
- *                  do{ cotwo.getCO2(co2ppm); } while (co2ppm <= 0);  
+ *                  do{ cotwo.getCO2(co2ppm); } while (co2ppm == 0);  
  *                  // ... do something with the co2 value ... 
  *              }
  *              @endcode
@@ -195,9 +221,11 @@ Error_t PASCO2SerialIno::end()
  *                  intFlag = true;
  *              }
  * 
- *              PASCO2Serial cotwo(sbus, timer, interrupt);
+ *              PASCO2Serial cotwo(serial_intf, interrupt);
  *              int16_t   co2ppm;
- * 
+ *              
+ *              serial_intf.begin();
+ *              
  *              cotwo.begin();  
  * 
  *              cotwo.startMeasure(300,0,cback);
@@ -214,7 +242,7 @@ Error_t PASCO2SerialIno::end()
  *              Alarm mode
  *              ---------------------------------------------------------------
  *              If the alarm threshold argument is non-zero, the alarm mode 
- *              is activated, and the sensor internal flag will be eanbled 
+ *              is activated, and the sensor internal flag will be enabled 
  *              if the concentration of CO2 goes above the specified value.
  *              This option is better combined with the interupt mode. Thus,
  *              if the interrupt mode is available and a callback function
@@ -227,7 +255,7 @@ Error_t PASCO2SerialIno::end()
  *                          The default value is 0, meaning single shot operation. 
  *                          The valid period range goes between 5 and 4095 seconds
  * @param[in]   alarmTh     Enables upper alarm threshold mode for the specified
- *                          value. 
+ *                          ppm value 
  *                          The default value is 0, meaning no alarm mode. 
  *                          For any non-zero value, the sensor will internally set 
  *                          the alarm flag. If an interrupt callback function is 
@@ -338,11 +366,7 @@ Error_t PASCO2SerialIno::stopMeasure()
  *               
  * 
  * @details     The value read is zero when no measurement is 
- *              yet available.
- *              In case of error, the read value is set to -1.
- *              Before reading the co2 value, the measurement 
- *              status register is read to know if a new 
- *              measurement data is available.
+ *              yet available or an error has ocurrred.
  * 
  * @param[out]  co2ppm  CO2 concentration read (in ppm)
  * @return      PAS CO2 error code
@@ -354,26 +378,16 @@ Error_t PASCO2SerialIno::getCO2(int16_t & CO2PPM)
     xensiv_pasco2_meas_status_t measSt; 
     int32_t ret = XENSIV_PASCO2_OK;  
 
-    /* Initially set to -1.*/
-    /* Will be the value in case of error*/
-    CO2PPM = -1;
-
-    /* Check if data is ready */
-    ret = xensiv_pasco2_get_measurement_status(&dev, &measSt);
-    INO_ASSERT_RET(ret);
-
-    ret = xensiv_pasco2_clear_measurement_status(&dev,(XENSIV_PASCO2_REG_MEAS_STS_INT_STS_CLR_MSK | XENSIV_PASCO2_REG_MEAS_STS_ALARM_CLR_MSK));
-    INO_ASSERT_RET(ret);
-
-    /* If data was not ready, it returns with CO2 pmm = 0*/
-    if(!measSt.b.drdy)
-    {   
-        CO2PPM = 0;
-        return ret; 
-    }
+    /* Initially set to 0.*/
+    CO2PPM = 0;
 
     /* Read the data */
     ret = xensiv_pasco2_get_result(&dev, (uint16_t*)&CO2PPM);
+    INO_ASSERT_RET(ret);
+
+    /* Clear masks from status register */
+    ret = xensiv_pasco2_clear_measurement_status(&dev,(XENSIV_PASCO2_REG_MEAS_STS_INT_STS_CLR_MSK | XENSIV_PASCO2_REG_MEAS_STS_ALARM_CLR_MSK));
+    INO_ASSERT_RET(ret);
 
     return ret;
 }

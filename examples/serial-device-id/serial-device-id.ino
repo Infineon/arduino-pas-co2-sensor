@@ -1,20 +1,13 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
-/**
- * Select the serial interface:
- * - I2C (TwoWire)
- * - UART (HardwareSerial)
- * By default the I2C interfaces is selected. 
- * Compile with -DINO_HW_SERIAL to select the UART interface.
- */
-#ifdef INO_HW_SERIAL
-HardwareSerial * bus = (HardwareSerial*) PASCO2_INO_UART;
-#else
-TwoWire * bus = (TwoWire*) PASCO2_INO_I2C;
-#endif
+#define I2C_FREQ_HZ 400000  
 
-PASCO2SerialIno cotwo(bus);
+/**
+ * Create CO2 object. Unless otherwise specified,
+ * using the Wire interface
+ */
+PASCO2SerialIno cotwo;
 
 uint8_t prodId, revId;
 Error_t err;
@@ -23,7 +16,11 @@ void setup()
 {
   Serial.begin(9600);
   delay(500);
-  Serial.println("pas co2 serial initialized");
+  Serial.println("serial initialized");
+
+  /* Initialize the i2c serial interface used by the sensor */
+  Wire.begin();
+  Wire.setClock(I2C_FREQ_HZ);
 
   err = cotwo.begin();
   if(XENSIV_PASCO2_OK != err)

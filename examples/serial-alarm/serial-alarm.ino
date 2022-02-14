@@ -1,24 +1,17 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
-/**
- * Select the serial interface:
- * - I2C (TwoWire)
- * - UART (HardwareSerial)
- * By default the I2C interfaces is selected. 
- * Compile with -DINO_HW_SERIAL to select the UART interface.
- */
-#ifdef INO_HW_SERIAL
-HardwareSerial * bus = (HardwareSerial*) PASCO2_INO_UART;
-#else
-TwoWire * bus = (TwoWire*) PASCO2_INO_I2C;
-#endif
+#define I2C_FREQ_HZ     400000
 
-PASCO2SerialIno cotwo(bus, PASCO2_INO_INT);
+uint8_t interrupt_pin = 9;      /* For XMC2Go. Change it for your hardware setup */
+
+PASCO2SerialIno cotwo(&Wire, interrupt_pin);
 
 int16_t co2ppm;
 Error_t err;
 
+
+/* A simple interrupt service routine which set a flag */
 volatile bool intFlag = false;
 void isr (void * )
 {
@@ -30,6 +23,15 @@ void setup()
   Serial.begin(9600);
   delay(500);
   Serial.println("serial initialized");
+
+  /* Initialize the i2c serial interface used by the sensor */
+  Wire.begin();
+  Wire.setClock(I2C_FREQ_HZ);
+
+  /*
+   * No need to initialized the interrupt pin. This is done 
+   * in the sensor begin() function 
+   */
 
   err = cotwo.begin();
   if(XENSIV_PASCO2_OK != err)

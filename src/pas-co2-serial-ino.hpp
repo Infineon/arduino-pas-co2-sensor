@@ -30,7 +30,7 @@ class PASCO2SerialIno
 
         static constexpr uint8_t       unusedPin = 0xFFU; /**< Unused pin */        
 
-                PASCO2SerialIno (TwoWire * wire, uint8_t intPin = unusedPin);
+                PASCO2SerialIno (TwoWire * wire = &Wire, uint8_t intPin = unusedPin);
                 PASCO2SerialIno (HardwareSerial * serial, uint8_t intPin = unusedPin);
                 ~PASCO2SerialIno();
         Error_t begin           ();
