@@ -1,6 +1,13 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
+/* 
+ * The sensor supports 100KHz and 400KHz. 
+ * You hardware setup and pull-ups value will
+ * also influence the i2c operation. You can 
+ * change this value to 100000 in case of 
+ * communication issues.
+ */
 #define I2C_FREQ_HZ  400000                     
 #define PERIODIC_MEAS_INTERVAL_IN_SECONDS  7 
 
@@ -24,6 +31,7 @@ void setup()
     Wire.begin();
     Wire.setClock(I2C_FREQ_HZ);
 
+    /* Initialize the sensor */
     err = cotwo.begin();
     if(XENSIV_PASCO2_OK != err)
     {
@@ -31,9 +39,9 @@ void setup()
       Serial.println(err);
     }
 
-
     /* We can set the reference pressure before starting 
-       the measure */
+     * the measure 
+     */
     err = cotwo.setPressRef(pressureReference);
     if(XENSIV_PASCO2_OK != err)
     {
@@ -42,8 +50,9 @@ void setup()
     }
 
     /*
-    * Periodic measurement every 7 seconds.
-    */
+     * Configure the sensor to measureme periodically 
+     * every 7 seconds
+     */
     err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
     if(XENSIV_PASCO2_OK != err)
     {

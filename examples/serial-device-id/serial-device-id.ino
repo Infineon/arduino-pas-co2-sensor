@@ -1,6 +1,13 @@
 #include <Arduino.h>
 #include <pas-co2-serial-ino.hpp>
 
+/* 
+ * The sensor supports 100KHz and 400KHz. 
+ * You hardware setup and pull-ups value will
+ * also influence the i2c operation. You can 
+ * change this value to 100000 in case of 
+ * communication issues.
+ */
 #define I2C_FREQ_HZ 400000  
 
 /**
@@ -22,6 +29,7 @@ void setup()
   Wire.begin();
   Wire.setClock(I2C_FREQ_HZ);
 
+  /* Initialize the sensor */
   err = cotwo.begin();
   if(XENSIV_PASCO2_OK != err)
   {
