@@ -1,8 +1,7 @@
 /** 
  * @file        pas-co2-serial-ino.hpp
  * @brief       PAS CO2 Serial Arduino API
- * @date        July 2020
- * @copyright   Copyright (c) 2020 Infineon Technologies AG
+ * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  *              
  * SPDX-License-Identifier: MIT
  */
@@ -10,100 +9,53 @@
 #ifndef PAS_CO2_SERIAL_INO_HPP_
 #define PAS_CO2_SERIAL_INO_HPP_
 
-#include "pas-co2-conf.hpp"
-
-#if IS_INTF(PAS_CO2_INTF_SERIAL)
-
 #include <Arduino.h>
 #include <Wire.h>
 #include <HardwareSerial.h>
-#include "pas-co2-serial.hpp"
-#include "pas-co2-i2c.hpp"
-#include "pas-co2-uart.hpp"
-#include "pas-co2-pal-gpio-ino.hpp"
-#include "pas-co2-pal-timer-ino.hpp"
-#include "pas-co2-pal-i2c-ino.hpp"
-#include "pas-co2-pal-uart-ino.hpp"
 #include "pas-co2-platf-ino.hpp"
+#include "xensiv_pasco2.h"
 
 /**
  * @addtogroup co2sinoapi
  * @{
  */
 
-class PASCO2SerialIno : public PASCO2Serial
+typedef int32_t Error_t;
+typedef xensiv_pasco2_status_t Diag_t;
+typedef xensiv_pasco2_boc_cfg_t ABOC_t;
+
+class PASCO2SerialIno
 {
     public:
-        
-        #if IS_INTF(PAS_CO2_INTF_I2C)
 
-        /* I2C interface */
-        PASCO2SerialIno(TwoWire * wire           = nullptr, 
-                        uint8_t   intPin         = GPIOIno::unusedPin, 
-                        uint8_t   protoSelectPin = GPIOIno::unusedPin,
-                        uint8_t   power3V3Pin    = GPIOIno::unusedPin,
-                        uint8_t   power12VPin    = GPIOIno::unusedPin);
-        
-        #endif
+        static constexpr uint8_t       unusedPin = 0xFFU; /**< Unused pin */        
 
-        #if IS_INTF(PAS_CO2_INTF_UART)
-
-        /* UART interface */
-        PASCO2SerialIno(HardwareSerial * serial, 
-                        uint8_t          intPin         = GPIOIno::unusedPin, 
-                        uint8_t          protoSelectPin = GPIOIno::unusedPin,
-                        uint8_t          power3V3Pin    = GPIOIno::unusedPin,
-                        uint8_t          power12VPin    = GPIOIno::unusedPin);
-        #endif
-        
-        ~PASCO2SerialIno();
-
-        /**
-         * @brief   Begins the sensor
-         * 
-         * @note    Optional call. The sensor initializes and
-         *          enables the sensor directly in the rest of
-         *          API calls.
-         * @return  PAS CO2 error code
-         * @retval  OK if success
-         * @retval  INTF_ERROR if interface error
-         * @retval  IC_POWERON_ERROR if power-on error
-         */
-        Error_t begin   () { return enable(); };
-        
-        /**
-         * @brief   Ends the sensor
-         * 
-         * @note    Optional call. The sensor initializes and
-         *          enables the sensor directly in the rest of
-         *          API calls.
-         * @return  PAS CO2 error code
-         * @retval  OK if success
-         * @retval  INTF_ERROR if interface error
-         */
-        Error_t end     () { return disable(); };
+                PASCO2SerialIno (TwoWire * wire = &Wire, uint8_t intPin = unusedPin);
+                PASCO2SerialIno (HardwareSerial * serial, uint8_t intPin = unusedPin);
+                ~PASCO2SerialIno();
+        Error_t begin           ();
+        Error_t end             ();
+        Error_t startMeasure    (int16_t  periodInSec = 0, int16_t alarmTh = 0, void (*cback) (void *) = nullptr);
+        Error_t stopMeasure     ();
+        Error_t getCO2          (int16_t & CO2PPM);
+        Error_t getDiagnosis    (Diag_t & diagnosis);
+        Error_t setABOC         (ABOC_t aboc, int16_t abocRef);
+        Error_t setPressRef     (uint16_t pressRef);
+        Error_t reset           ();
+        Error_t getDeviceID     (uint8_t & prodID, uint8_t & revID);
 
     private:
 
-        #if IS_INTF(PAS_CO2_INTF_I2C)
-        I2CPALIno   * i2cpal;
-        pasco2::I2C * i2c;
-        #endif
+        TwoWire         * i2c;          /**< I2C interface*/
+        HardwareSerial  * uart;         /**< UART interface */   
+        uint8_t           intPin;       /**< Interrupt pin */
 
+        static constexpr uint16_t baudrateBps = 9600;      /**< UART baud rate in bps */
+        static constexpr uint32_t freqHz      = 100000;    /**< I2C frequency in Hz*/
 
-        #if IS_INTF(PAS_CO2_INTF_UART)
-        UARTPALIno   * uartpal;
-        pasco2::UART * uart;
-        #endif
-        
-        TimerIno  * timer;
-        GPIOIno   * interrupt;
-        GPIOIno   * protoSelect;
-        GPIOIno   * power3V3;
-        GPIOIno   * power12V;
+        xensiv_pasco2_t   dev;          /**< PAS CO2 corelib object */
 };
 
 /** @} */
 
-#endif /** PAS_CO2_INTF **/
 #endif /** PAS_CO2_SERIAL_INO_HPP_ **/

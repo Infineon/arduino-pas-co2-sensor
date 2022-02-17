@@ -2,45 +2,31 @@
 
 ![build-check](https://github.com/Infineon/arduino-pas-co2-sensor/actions/workflows/build-check.yml/badge.svg)
 
-Arduino library of Infineon's **Photoacoustic Spectroscopy (PAS) XENSIV™ CO2** miniaturized sensor.
+Arduino library of Infineon's [**Photoacoustic Spectroscopy (PAS) XENSIV™ CO2**](https://www.infineon.com/cms/en/product/sensor/co2-sensors/) miniaturized sensor.
 
-### Supported Sensor Boards
-<table>
-    <tr>
-        <td align="center"><img src="https://github.com/Infineon/pas-co2-sensor/wiki/img/pas-co2-s2go-front.jpg" width=200></td>
-        <td align="center"><img  src="https://github.com/Infineon/pas-co2-sensor/wiki/img/pas-co2-miniboard.jpg" width=200></td>
-    </tr>
-    <tr>
-        <td style="text-align: center"><a href="https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms#pas-co2-sensor-shield-2go">PAS CO2 Shield2Go</a></td>
-        <td style="text-align: center"><a href="https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms#pas-co2-miniboard">PAS CO2 Miniboard</a></td>
-    </tr>
-</table>
+<img src="docs/img/pas-co2-module.png" width=200>
 
-### Supported Hardware Platforms
 
-The library should be supported by any Arduino platform based on the reference Arduino cores. 
+### Getting started
 
-Check in this [link](https://github.com/Infineon/pas-co2-sensor/wiki/Hardware-Platforms) the already verified (at least successfully built) platforms, and find out which boards are under CI build check [here](https://github.com/Infineon/arduino-pas-co2-sensor/blob/master/.github/workflows/build-check.yml).
+Find a getting started tutorial based on the PAS CO2 Shield2Go and the XMC 2Go eval board in this [link](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/getting-started.html).
 
-### Getting Started
+### Library installation
 
-Find a getting started tutorial based on the PAS CO2 Shield2Go and the XMC 2Go eval board [here](https://github.com/Infineon/pas-co2-sensor/wiki/Ino-Getting-Started).
+Look for ```pas-co2-sensor``` in the Arduino library manager.
+
+Other installation alternatives [here](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/lib-install.html).
+
+### API reference
+
+Discover all the API features and functions in the [API reference](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/api-ref.html).
 
 ### More information
 
-The complete relevant Arduino documentation (and more) can be found in the base XFP library [Wiki](https://github.com/infineon/pas-co2-sensor/wiki/Home):
-
-* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/Ino-Library-Installation"> Arduino Lib Installation</a><br> 
-* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/Ino-Examples">Arduino Examples</a><br>
-* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/Arduino-API">Arduino API</a><br>
-* <a href="https://github.com/Infineon/pas-co2-sensor/wiki/PlatformIO">PlatformIO</a><br>
-
-### Contributing
-
-This is a release repository for the Arduino framework. The code basis is maintained and developed in the PAS CO2 Sensor Cross-Framework-Platform (XFP) library [repository](https://github.com/infineon/pas-co2-sensor). 
+More information can be found in the library [docs](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/index.html).
   
 ### License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+See the [LICENSE](LICENSE.md) file for more details.
 
 
