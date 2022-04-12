@@ -2,7 +2,7 @@
 Home
 ****
 
-Welcome to the Infineon Photoacoustic Spectroscopy (PAS) XENSIV™ CO2 Sensor Arduino library docs!
+Welcome to the Infineon Photoacoustic Spectroscopy XENSIV™ PAS CO2 Sensor Arduino library docs!
 
 .. image:: img/arduino-logo.png
     :height: 200
