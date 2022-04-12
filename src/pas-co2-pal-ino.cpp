@@ -1,6 +1,6 @@
 /** 
  * @file        pas-co2-pal-ino.cpp
- * @brief       PAS CO2 Arduino PAL Implementation
+ * @brief       XENSIV™ PAS CO2 Arduino PAL Implementation
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  *              
  * SPDX-License-Identifier: MIT

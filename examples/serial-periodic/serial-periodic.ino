@@ -9,7 +9,7 @@
  * communication issues.
  */
 #define I2C_FREQ_HZ  400000                     
-#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  7 
+#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
 
 /*
  * Create CO2 object. Unless otherwise specified,
@@ -51,7 +51,7 @@ void setup()
 
     /*
      * Configure the sensor to measureme periodically 
-     * every 7 seconds
+     * every 10 seconds
      */
     err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
     if(XENSIV_PASCO2_OK != err)
@@ -59,6 +59,8 @@ void setup()
       Serial.print("start measure error: ");
       Serial.println(err);
     }
+
+    delay(1000);
 }
 
 void loop()
@@ -71,8 +73,17 @@ void loop()
     err = cotwo.getCO2(co2ppm);
     if(XENSIV_PASCO2_OK != err)
     {
-      Serial.print("get co2 error: ");
-      Serial.println(err);
+      /* Retry in case of timing synch mismatch */
+      if(XENSIV_PASCO2_ERR_COMM == err)
+      {
+        delay(600);
+        err = cotwo.getCO2(co2ppm);
+        if(XENSIV_PASCO2_OK != err)          
+        {
+          Serial.print("get co2 error: ");
+          Serial.println(err);
+        }
+      }
     }
 
     Serial.print("co2 ppm value : ");
