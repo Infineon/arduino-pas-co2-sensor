@@ -73,8 +73,17 @@ void loop()
     err = cotwo.getCO2(co2ppm);
     if(XENSIV_PASCO2_OK != err)
     {
-      Serial.print("get co2 error: ");
-      Serial.println(err);
+      /* Retry in case of timing synch mismatch */
+      if(XENSIV_PASCO2_ERR_COMM == err)
+      {
+        delay(600);
+        err = cotwo.getCO2(co2ppm);
+        if(XENSIV_PASCO2_OK != err)          
+        {
+          Serial.print("get co2 error: ");
+          Serial.println(err);
+        }
+      }
     }
 
     Serial.print("co2 ppm value : ");
