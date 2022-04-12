@@ -61,7 +61,7 @@ void setup()
    * goes over 25000 ppm. The isr function is 
    * passed enabling the sensor interrupt mode.
    */
-  err = cotwo.startMeasure(10, 25000, isr);
+  err = cotwo.startMeasure(10, 1200, isr);
   if(XENSIV_PASCO2_OK != err)
   {
     Serial.print("start measure error: ");
@@ -72,7 +72,7 @@ void setup()
 void loop()
 {
     /* Interrupt alarm requires a CO2 concentration above the threshold */
-    Serial.println("USER ACTION REQUIRED --> increase co2 to 25000 PPM to trigger the alarm!!");
+    Serial.println("USER ACTION REQUIRED --> increase co2 to 1200 PPM to trigger the alarm!!");
     while(false == intFlag) { };
 
     /* Clear the interrupt flag */

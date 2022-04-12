@@ -9,7 +9,7 @@
  * communication issues.
  */
 #define I2C_FREQ_HZ  400000                     
-#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  7 
+#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
 
 /*
  * Create CO2 object. Unless otherwise specified,
@@ -51,7 +51,7 @@ void setup()
 
     /*
      * Configure the sensor to measureme periodically 
-     * every 7 seconds
+     * every 10 seconds
      */
     err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
     if(XENSIV_PASCO2_OK != err)
