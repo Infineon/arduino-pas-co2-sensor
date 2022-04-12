@@ -2,7 +2,7 @@
 
 ![build-check](https://github.com/Infineon/arduino-pas-co2-sensor/actions/workflows/build-check.yml/badge.svg)
 
-Arduino library of Infineon's [** XENSIV™ Photoacoustic Spectroscopy (PAS) CO2**](https://www.infineon.com/cms/en/product/sensor/co2-sensors/) miniaturized sensor.
+Arduino library of Infineon's [**XENSIV™ Photoacoustic Spectroscopy (PAS) CO2**](https://www.infineon.com/cms/en/product/sensor/co2-sensors/) miniaturized sensor.
 
 <img src="docs/img/pas-co2-module.png" width=200>
 
