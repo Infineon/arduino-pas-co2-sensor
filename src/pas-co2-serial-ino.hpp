@@ -1,6 +1,6 @@
 /** 
  * @file        pas-co2-serial-ino.hpp
- * @brief       PAS CO2 Serial Arduino API
+ * @brief       XENSIV™ PAS CO2 Serial Arduino API
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  *              
  * SPDX-License-Identifier: MIT
@@ -53,7 +53,7 @@ class PASCO2SerialIno
         static constexpr uint16_t baudrateBps = 9600;      /**< UART baud rate in bps */
         static constexpr uint32_t freqHz      = 100000;    /**< I2C frequency in Hz*/
 
-        xensiv_pasco2_t   dev;          /**< PAS CO2 corelib object */
+        xensiv_pasco2_t   dev;          /**< XENSIV™ PAS CO2 corelib object */
 };
 
 /** @} */

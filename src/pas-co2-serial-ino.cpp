@@ -1,6 +1,6 @@
 /** 
  * @file        pas-co2-serial-ino.cpp
- * @brief       PAS CO2 Serial Arduino API
+ * @brief       XENSIV™ PAS CO2 Serial Arduino API
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  *              
  * SPDX-License-Identifier: MIT
@@ -9,7 +9,7 @@
 #include "pas-co2-serial-ino.hpp"
 
 /**
- * @brief   Assertion of PAS CO2 return code
+ * @brief   Assertion of XENSIV™ PAS CO2 return code
  */
 #define INO_ASSERT_RET(x)   if( x != XENSIV_PASCO2_OK ) { return x; }
 
@@ -24,7 +24,7 @@
 #define PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
 
 /**
- * @brief      PAS CO2 Serial I2C Arduino Constructor
+ * @brief      XENSIV™ PAS CO2 Serial I2C Arduino Constructor
  *
  * @param[in]   wire    TwoWire interface instance. Default is the Arduino primary Wire instance.
  * @param[in]   intPin  Interrupt pin. Default is UnusedPin         
@@ -38,7 +38,7 @@ PASCO2SerialIno::PASCO2SerialIno(TwoWire * wire,
 }
 
 /**
- * @brief      PAS CO2 Serial UART Arduino Constructor
+ * @brief      XENSIV™ PAS CO2 Serial UART Arduino Constructor
  * 
  * @param[in]   serial  Serial interface instance
  * @param[in]   intPin  Interrupt pin. Default is UnusedPin         
@@ -52,7 +52,7 @@ PASCO2SerialIno::PASCO2SerialIno(HardwareSerial * serial,
 }
 
 /**
- * @brief       PAS CO2 Serial Arduino Destructor 
+ * @brief       XENSIV™ PAS CO2 Serial Arduino Destructor 
  * @details     It disables the sensor and deletes all the
  *              dynamically created PAL instances in the 
  *              constructor
@@ -72,7 +72,7 @@ PASCO2SerialIno::~PASCO2SerialIno()
  *          prior the serial interface initialization.
  *          Initializes the interrupt pin if used.
  * 
- * @return  PAS CO2 error code
+ * @return  XENSIV™ PAS CO2 error code
  * @retval  XENSIV_PASCO2_OK if success 
  * @pre     None
  */
@@ -126,7 +126,7 @@ Error_t PASCO2SerialIno::begin()
  *          is delegated to the PASCO2Serial class. 
  *          Deinitializes the interrupt pin if used.
  * 
- * @return  PAS CO2 error code
+ * @return  XENSIV™ PAS CO2 error code
  * @retval  XENSIV_PASCO2_OK always
  * @pre     begin()
  */
@@ -276,7 +276,7 @@ Error_t PASCO2SerialIno::end()
  *                          defined threshold has been tresspassed
  * @param[in]   cback       Pointer to the callback function to be called upon
  *                          interrupt
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
@@ -363,7 +363,7 @@ Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void
  * 
  * @details     Sets operation mode to idle
  * 
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
@@ -392,7 +392,7 @@ Error_t PASCO2SerialIno::stopMeasure()
  *              yet available or an error has ocurrred.
  * 
  * @param[out]  co2ppm  CO2 concentration read (in ppm)
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         startMeasure()
  */
@@ -429,7 +429,7 @@ Error_t PASCO2SerialIno::getCO2(int16_t & CO2PPM)
  *              the corresponding clear flag bitfields.
  * 
  * @param[out]  diagnosis  Struct to store the diagnosis flags values   
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         None
  */
@@ -454,7 +454,7 @@ Error_t PASCO2SerialIno::getDiagnosis(Diag_t & diagnosis)
  * 
  * @param[in]   aboc        Automatic baseline compenstation mode  
  * @param[in]   abocRef     Automatic baseline compensation reference
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
@@ -482,7 +482,7 @@ Error_t PASCO2SerialIno::setABOC(ABOC_t aboc, int16_t abocRef)
  * @brief       Sets the sensor pressure reference
  * 
  * @param[in]   pressRef    Pressure reference value. Min value is 600, and max 1600.
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
@@ -498,7 +498,7 @@ Error_t PASCO2SerialIno::setPressRef(uint16_t pressRef)
 /**
  * @brief       Resets the sensor via serial command
  * 
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
@@ -517,7 +517,7 @@ Error_t PASCO2SerialIno::reset()
  *  
  * @param[out]  prodID  Product identifier
  * @param[out]  revID   Version identifier
- * @return      PAS CO2 error code
+ * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */

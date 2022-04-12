@@ -5,8 +5,8 @@ API Reference
 
 The Arduino library API is implemented via the PASCO2SerialIno class.
 
-PAS CO2 Serial Arduino API
---------------------------
+XENSIV™ PAS CO2 Serial Arduino API
+----------------------------------
 
 .. doxygenclass:: PASCO2SerialIno
    :members:
