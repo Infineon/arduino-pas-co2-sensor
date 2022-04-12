@@ -79,6 +79,7 @@ PASCO2SerialIno::~PASCO2SerialIno()
 Error_t PASCO2SerialIno::begin()
 {
     int32_t ret = XENSIV_PASCO2_OK;
+    xensiv_pasco2_measurement_config_t  measConf;
 
     /* Initialize sensor interface */
     if(nullptr != i2c)
@@ -103,6 +104,18 @@ Error_t PASCO2SerialIno::begin()
         pinMode(intPin, INPUT_PULLUP);
     }
 
+    /**
+     * Set the sensor in idle mode.
+     * In case PWM_DIS is by hardware configuring 
+     * the device to continuous mode
+     */
+    ret = xensiv_pasco2_get_measurement_config(&dev, &measConf);
+    INO_ASSERT_RET(ret);
+
+    measConf.b.op_mode = XENSIV_PASCO2_OP_MODE_IDLE;
+
+    ret = xensiv_pasco2_set_measurement_config(&dev, measConf);
+     
     return ret;
 }
 
@@ -275,6 +288,16 @@ Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void
 
     /* Get meas configuration*/
     ret = xensiv_pasco2_get_measurement_config(&dev, &measConf);
+    INO_ASSERT_RET(ret);
+
+    /**
+     * Set the device in idle mode to avoid 
+     * any conflict if stopMeasure() was not
+     * previously called.
+     */
+    measConf.b.op_mode = XENSIV_PASCO2_OP_MODE_IDLE;
+
+    ret = xensiv_pasco2_set_measurement_config(&dev, measConf);
     INO_ASSERT_RET(ret);
 
     /* Get int configuration */
