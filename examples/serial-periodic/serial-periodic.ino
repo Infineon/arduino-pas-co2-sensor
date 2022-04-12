@@ -59,6 +59,8 @@ void setup()
       Serial.print("start measure error: ");
       Serial.println(err);
     }
+
+    delay(1000);
 }
 
 void loop()
