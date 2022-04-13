@@ -9,28 +9,28 @@ This library can support any break-out board or (PAS) XENSIV™ CO2 Sensor based
 .. image:: img/pas-co2-module.png
     :width: 200
 
-* `PAS CO2 Stand-alone module product page <https://www.infineon.com/cms/en/product/sensor/co2-sensors>`_
-* `PAS CO2 Sensor documentation <https://www.infineon.com/cms/en/product/sensor/co2-sensors/#!documents>`_
+* `XENSIV™ PAS CO2 Stand-alone module product page <https://www.infineon.com/cms/en/product/sensor/co2-sensors>`_
+* `XENSIV™ PAS CO2 Sensor documentation <https://www.infineon.com/cms/en/product/sensor/co2-sensors/#!documents>`_
 
 The following kits can be integrated in Arduino compatible MCUs and are supported by this library:
 
-PAS CO2 Sensor Shield2Go
-""""""""""""""""""""""""
+XENSIV™ PAS CO2 Sensor Shield2Go
+""""""""""""""""""""""""""""""""
 
  .. image:: img/pas-co2-s2go-front.jpg
     :width: 300
 
-* `PAS CO2 Shield2Go product page <http://www.notfound.com>`_ (Coming soon)
+* `XENSIV™ PAS CO2 Shield2Go product page <http://www.notfound.com>`_ (Coming soon)
 * `Quick Start Guide S2Go <http://www.notfound.com>`_ (Coming soon)(for Arduino)
 
-PAS CO2 Miniboard
-"""""""""""""""""""
+XENSIV™ PAS CO2 Miniboard
+"""""""""""""""""""""""""
 
 .. image:: img/pas-co2-miniboard.jpg
     :width: 200
 
-* `PAS CO2 Miniboard product page <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
-* `PAS CO2 Miniboard documentation <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard/#!documents>`_
+* `XENSIV™ PAS CO2 Miniboard product page <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
+* `XENSIV™ PAS CO2 Miniboard documentation <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard/#!documents>`_
 
 Supported MCU Platforms
 -----------------------

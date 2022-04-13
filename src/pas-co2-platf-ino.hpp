@@ -1,6 +1,6 @@
 /** 
  * @file        pas-co2-platf-ino.hpp
- * @brief       PAS CO2 Arduino Hardware Platforms
+ * @brief       XENSIV™ PAS CO2 Arduino Hardware Platforms
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  * 
  * SPDX-License-Identifier: MIT

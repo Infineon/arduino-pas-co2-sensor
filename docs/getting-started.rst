@@ -3,7 +3,7 @@
 Getting Started
 ================
 
-In this quick tutorial we will go through one of the PAS CO2 sensor examples available using the Shield2Go or the Miniboard and the XMC microcontroller family in Arduino.
+In this quick tutorial we will go through one of the XENSIV™ PAS CO2 sensor examples available using the Shield2Go or the Miniboard and the XMC microcontroller family in Arduino.
 
 Required Hardware
 -----------------
@@ -14,10 +14,10 @@ Required Hardware
 
     * - Name
       - Picture
-    * - `PAS CO2 Sensor Shield2Go <http://www.notfound.com>`_ (Coming soon) 
+    * - `XENSIV™ PAS CO2 Sensor Shield2Go <http://www.notfound.com>`_ (Coming soon) 
       - .. image:: img/pas-co2-s2go-front.jpg
             :height: 60
-    * - or `PAS CO2 Miniboard <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
+    * - or `XENSIV™ PAS CO2 Miniboard <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
       - .. image:: img/pas-co2-miniboard.jpg
             :height: 80 
     * - `XMC 2Go <https://www.infineon.com/cms/de/product/evaluation-boards/kit_xmc_2go_xmc1100_v1/>`_
@@ -39,7 +39,7 @@ Required Software
 * `Segger J-Link <https://www.segger.com/downloads/jlink>`_
 * `Arduino IDE <https://www.arduino.cc/en/main/software>`_
 * `XMC-for-Arduino <https://github.com/Infineon/XMC-for-Arduino>`_ 
-* `PAS CO2 Arduino library <https://github.com/Infineon/arduino-pas-co2-sensor>`_
+* `XENSIV™ PAS CO2 Arduino library <https://github.com/Infineon/arduino-pas-co2-sensor>`_
 
 Software Installation
 ---------------------
@@ -62,7 +62,7 @@ For this example we are going to use the I2C serial interface.
 A. Shield2Go
 """"""""""""
 
-If you are using the PAS CO2 Sensor Shield2Go, it just need to be stacked on the XMC 2Go microcontroller board. Be sure that that the corresponding solder jumper are set for I2C mode, and PSEL is pulled to GND. 
+If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it just need to be stacked on the XMC 2Go microcontroller board. Be sure that that the corresponding solder jumper are set for I2C mode, and PSEL is pulled to GND. 
 Check the `Shield2Go Manual <http://www.notfound.com>`_ (coming soon) for complete details.
 
 .. 
