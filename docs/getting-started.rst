@@ -15,10 +15,10 @@ Required Hardware
     * - Name
       - Picture
     * - `XENSIV™ PAS CO2 Sensor Shield2Go <https://www.infineon.com/cms/en/product/evaluation-boards/shield_pasco2_sensor>`_
-      - .. image:: img/pas-co2-s2go-front.jpg
+      - .. image:: img/pas-co2-s2go-front.png
             :height: 60
     * - or `XENSIV™ PAS CO2 Miniboard <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
-      - .. image:: img/pas-co2-miniboard.jpg
+      - .. image:: img/pas-co2-miniboard.png
             :height: 80 
     * - `XMC 2Go <https://www.infineon.com/cms/de/product/evaluation-boards/kit_xmc_2go_xmc1100_v1/>`_
       - .. image:: img/xmc2go.jpg

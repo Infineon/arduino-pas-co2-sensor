@@ -17,7 +17,7 @@ The following kits can be integrated in Arduino compatible MCUs and are supporte
 XENSIV™ PAS CO2 Sensor Shield2Go
 """"""""""""""""""""""""""""""""
 
- .. image:: img/pas-co2-s2go-front.jpg
+ .. image:: img/pas-co2-s2go-front.png
     :width: 300
 
 * `XENSIV™ PAS CO2 Shield2Go product page <https://www.infineon.com/cms/en/product/evaluation-boards/shield_pasco2_sensor/>`_
@@ -26,7 +26,7 @@ XENSIV™ PAS CO2 Sensor Shield2Go
 XENSIV™ PAS CO2 Miniboard
 """""""""""""""""""""""""
 
-.. image:: img/pas-co2-miniboard.jpg
+.. image:: img/pas-co2-miniboard.png
     :width: 200
 
 * `XENSIV™ PAS CO2 Miniboard product page <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
