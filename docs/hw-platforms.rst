@@ -20,8 +20,8 @@ XENSIV™ PAS CO2 Sensor Shield2Go
  .. image:: img/pas-co2-s2go-front.jpg
     :width: 300
 
-* `XENSIV™ PAS CO2 Shield2Go product page <http://www.notfound.com>`_ (Coming soon)
-* `Quick Start Guide S2Go <http://www.notfound.com>`_ (Coming soon)(for Arduino)
+* `XENSIV™ PAS CO2 Shield2Go product page <https://www.infineon.com/cms/en/product/evaluation-boards/shield_pasco2_sensor/>`_
+* `Quick Start Guide Shield2Go <https://www.infineon.com/dgdl/Infineon-Quickstart_guide_PAS_CO2_Shield2go-UserManual-v01_00-EN.pdf?fileId=8ac78c8c7f2a768a017f6ab96bf11845>`_ (for Arduino)
 
 XENSIV™ PAS CO2 Miniboard
 """""""""""""""""""""""""
