@@ -14,11 +14,11 @@ Required Hardware
 
     * - Name
       - Picture
-    * - `XENSIV™ PAS CO2 Sensor Shield2Go <http://www.notfound.com>`_ (Coming soon) 
-      - .. image:: img/pas-co2-s2go-front.jpg
+    * - `XENSIV™ PAS CO2 Sensor Shield2Go <https://www.infineon.com/cms/en/product/evaluation-boards/shield_pasco2_sensor>`_
+      - .. image:: img/pas-co2-s2go-front.png
             :height: 60
     * - or `XENSIV™ PAS CO2 Miniboard <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
-      - .. image:: img/pas-co2-miniboard.jpg
+      - .. image:: img/pas-co2-miniboard.png
             :height: 80 
     * - `XMC 2Go <https://www.infineon.com/cms/de/product/evaluation-boards/kit_xmc_2go_xmc1100_v1/>`_
       - .. image:: img/xmc2go.jpg
@@ -63,7 +63,7 @@ A. Shield2Go
 """"""""""""
 
 If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it just need to be stacked on the XMC 2Go microcontroller board. Be sure that that the corresponding solder jumper are set for I2C mode, and PSEL is pulled to GND. 
-Check the `Shield2Go Manual <http://www.notfound.com>`_ (coming soon) for complete details.
+Check the `Shield2Go Manual <https://www.infineon.com/dgdl/Infineon-Quickstart_guide_PAS_CO2_Shield2go-UserManual-v01_00-EN.pdf?fileId=8ac78c8c7f2a768a017f6ab96bf11845>`_ for complete details.
 
 .. 
     .. image:: img/pas-co2-xmc2go-small.jpg
