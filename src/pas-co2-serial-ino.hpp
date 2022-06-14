@@ -35,7 +35,7 @@ class PASCO2SerialIno
                 ~PASCO2SerialIno();
         Error_t begin           ();
         Error_t end             ();
-        Error_t startMeasure    (int16_t  periodInSec = 0, int16_t alarmTh = 0, void (*cback) (void *) = nullptr);
+        Error_t startMeasure    (int16_t  periodInSec = 0, int16_t alarmTh = 0, void (*cback) (void *) = nullptr, bool earlyNotification = false);
         Error_t stopMeasure     ();
         Error_t getCO2          (int16_t & CO2PPM);
         Error_t getDiagnosis    (Diag_t & diagnosis);

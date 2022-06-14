@@ -264,24 +264,38 @@ Error_t PASCO2SerialIno::end()
  *              concentration goes above the threshold. 
  *              This makes mostly sense for continuous measurement configuration. 
  *              But it can be used as well for a single shot configuration
+ * 
+ *              Early notification
+ *              ---------------------------------------------------------------
+ *              The early notification mode can be used for battery power
+ *              solutions. The interrupt signal can trigger the enablement of
+ *              the 12V emitter power supply just before the measurement is
+ *              performed, and switch it off as the interrupt signal is disabled.
+ *              Therefore, the power supply 12V only needs to be on during the
+ *              CO2 sensing.
+ *                  
+ *              When this flag is set, the alarm interrupt functionality is not 
+ *              available. Both options cannot be combined.
+ *              
  *                 
- * @param[in]   periodInSec Enables continuous measurement with the specified period. 
- *                          The default value is 0, meaning single shot operation. 
- *                          The valid period range goes between 5 and 4095 seconds
- * @param[in]   alarmTh     Enables upper alarm threshold mode for the specified
- *                          ppm value 
- *                          The default value is 0, meaning no alarm mode. 
- *                          For any non-zero value, the sensor will internally set 
- *                          the alarm flag. If an interrupt callback function is 
- *                          provided, then the interrupt will occurr only when the 
- *                          defined threshold has been tresspassed
- * @param[in]   cback       Pointer to the callback function to be called upon
- *                          interrupt
+ * @param[in]   periodInSec         Enables continuous measurement with the specified period. 
+ *                                  The default value is 0, meaning single shot operation. 
+ *                                  The valid period range goes between 5 and 4095 seconds
+ * @param[in]   alarmTh             Enables upper alarm threshold mode for the specified
+ *                                  ppm value 
+ *                                  The default value is 0, meaning no alarm mode. 
+ *                                  For any non-zero value, the sensor will internally set 
+ *                                  the alarm flag. If an interrupt callback function is 
+ *                                  provided, then the interrupt will occurr only when the 
+ *                                  defined threshold has been tresspassed
+ * @param[in]   cback               Pointer to the callback function to be called upon
+ *                                  interrupt
+ * @param[in]   earlyNotification   Enables early notifification interrupt. Disabled (false) by default 
  * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cback) (void *))
+Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cback) (void *), bool earlyNotification)
 {
     xensiv_pasco2_measurement_config_t  measConf;
     xensiv_pasco2_interrupt_config_t intConf; 
@@ -341,6 +355,11 @@ Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void
 
         /* Enable sensor interrupt */
         intConf.b.int_typ = XENSIV_PASCO2_INTERRUPT_TYPE_HIGH_ACTIVE;
+
+        if(true == earlyNotification)
+        {
+            intConf.b.int_func = XENSIV_PASCO2_INTERRUPT_FUNCTION_EARLY;
+        }
     }
     else
     {
