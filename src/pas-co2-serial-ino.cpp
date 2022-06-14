@@ -187,9 +187,9 @@ Error_t PASCO2SerialIno::end()
  *              do{ cotwo.getCO2(co2ppm); } while (co2ppm == 0);  
  *              @endcode
  * 
- *              Periodic measurement
+ *              Continuous measurement
  *              ---------------------------------------------------------------
- *              Periodic measurements (periodInSec) will configure the sensor
+ *              Continuous measurements (periodInSec) will configure the sensor
  *              to perform a measurement every desired period. Between 5 and
  *              4095 seconds.
  *              Without further arguments, the user has to poll with getCO2()
@@ -209,7 +209,8 @@ Error_t PASCO2SerialIno::end()
  * 
  *              while(1)
  *              {
- *                  delay(300);
+ *                  delay(300000); // Measure will be ready every 5 min
+ * 
  *                  do{ cotwo.getCO2(co2ppm); } while (co2ppm == 0);  
  *                  // ... do something with the co2 value ... 
  *              }
@@ -218,7 +219,7 @@ Error_t PASCO2SerialIno::end()
  *              Synching readouts with the hardware interrupt
  *              ---------------------------------------------------------------
  *              In order not to saturate the sensor with constant serial 
- *              requests, especially in periodic mode, it is recommended 
+ *              requests, especially in continuous mode, it is recommended 
  *              to synch the readout with a timer. Or even better using 
  *              the hardware GPIO hardware interrupt.
  *              If the interrupt pin has been provided, passing
@@ -261,10 +262,10 @@ Error_t PASCO2SerialIno::end()
  *              if the interrupt mode is available and a callback function
  *              is passed, the interrupt will occurr only when the co2 
  *              concentration goes above the threshold. 
- *              This makes mostly sense for periodic measurement configuration. 
+ *              This makes mostly sense for continuous measurement configuration. 
  *              But it can be used as well for a single shot configuration
  *                 
- * @param[in]   periodInSec Enables periodic measurement with the specified period. 
+ * @param[in]   periodInSec Enables continuous measurement with the specified period. 
  *                          The default value is 0, meaning single shot operation. 
  *                          The valid period range goes between 5 and 4095 seconds
  * @param[in]   alarmTh     Enables upper alarm threshold mode for the specified
@@ -511,7 +512,7 @@ Error_t PASCO2SerialIno::clearForcedCompensation()
 /**
  * @brief       Sets the sensor pressure reference
  * 
- * @param[in]   pressRef    Pressure reference value. Min value is 600, and max 1600.
+ * @param[in]   pressRef    Pressure reference value. Min value is 750, and max 1150.
  * @return      XENSIV™ PAS CO2 error code
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
