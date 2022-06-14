@@ -350,16 +350,19 @@ Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void
 
     if(cback != nullptr)
     {
-        /* Enable mcu interupt */
-        attachInterrupt(digitalPinToInterrupt(intPin), (void (*)())cback, RISING);
-
         /* Enable sensor interrupt */
         intConf.b.int_typ = XENSIV_PASCO2_INTERRUPT_TYPE_HIGH_ACTIVE;
+        uint8_t int_event = RISING;
 
         if(true == earlyNotification)
         {
-            intConf.b.int_func = XENSIV_PASCO2_INTERRUPT_FUNCTION_EARLY;
+           /* In this case it would be useful to have an interrupt
+              for both the rising and falling edge. */
+            int_event = CHANGE;
         }
+
+        /* Enable mcu interupt */
+        attachInterrupt(digitalPinToInterrupt(intPin), (void (*)())cback, int_event);
     }
     else
     {
@@ -368,6 +371,12 @@ Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void
 
         /* Disable mcu interrupt */
         detachInterrupt(digitalPinToInterrupt(intPin));
+    }
+
+    /* This option will disable the alarm interrupt function */ 
+    if(true == earlyNotification)
+    {
+        intConf.b.int_func = XENSIV_PASCO2_INTERRUPT_FUNCTION_EARLY;
     }
 
     ret = xensiv_pasco2_set_interrupt_config(&dev, intConf);
