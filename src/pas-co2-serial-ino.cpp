@@ -479,6 +479,36 @@ Error_t PASCO2SerialIno::setABOC(ABOC_t aboc, int16_t abocRef)
 }
 
 /**
+ * @brief       Performs force compensation
+ * 
+ * @details     Calculates the offset compensation when the sensor is exposed to a CO2 reference
+ *              value.
+ * @warning     The device is left in idle mode after the compensation value is stored in
+ *              non-volatile memory. 
+ * 
+ * @param[in]   co2Ref  Automatic baseline compenstation mode  
+ * @return      XENSIV™ PAS CO2 error code
+ * @retval      XENSIV_PASCO2_OK if success
+ * @pre         begin()
+ */
+Error_t PASCO2SerialIno::performForcedCompensation(uint16_t co2Ref)
+{
+    return xensiv_pasco2_perform_forced_compensation(&dev, co2Ref);
+}
+
+/**
+ * @brief       Resets the forced calibration correction factor
+ * 
+ * @return      XENSIV™ PAS CO2 error code
+ * @retval      XENSIV_PASCO2_OK if success
+ * @pre         begin()
+ */
+Error_t PASCO2SerialIno::clearForcedCompensation()
+{
+    return xensiv_pasco2_cmd(&dev, XENSIV_PASCO2_CMD_RESET_FCS);
+}
+
+/**
  * @brief       Sets the sensor pressure reference
  * 
  * @param[in]   pressRef    Pressure reference value. Min value is 600, and max 1600.

@@ -41,6 +41,8 @@ class PASCO2SerialIno
         Error_t getDiagnosis    (Diag_t & diagnosis);
         Error_t setABOC         (ABOC_t aboc, int16_t abocRef);
         Error_t setPressRef     (uint16_t pressRef);
+        Error_t performForcedCompensation(uint16_t co2Ref);
+        Error_t clearForcedCompensation  ();
         Error_t reset           ();
         Error_t getDeviceID     (uint8_t & prodID, uint8_t & revID);
 
