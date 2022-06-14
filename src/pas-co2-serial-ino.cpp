@@ -564,3 +564,33 @@ Error_t PASCO2SerialIno::getDeviceID(uint8_t & prodID, uint8_t & revID)
     
     return ret;
 }
+
+/**
+ * @brief       Reads from the sensor device into the given data buffer
+ *  
+ * @param[in]   regAddr Start register address
+ * @param[out]  data    Pointer to the data buffer to store the register values of the sensor
+ * @param[in]   len     Number of bytes of data to be read
+ * @return      XENSIV™ PAS CO2 error code
+ * @retval      XENSIV_PASCO2_OK if success
+ * @pre         begin()
+ */
+Error_t PASCO2SerialIno::getRegister(uint8_t regAddr, uint8_t * data, uint8_t len)
+{
+    return xensiv_pasco2_get_reg(&dev, regAddr, data, len);
+}
+
+/**
+ * @brief      Writes the given data buffer into the sensor device
+ *  
+ * @param[in]   regAddr Start register address
+ * @param[in]   data    Pointer to the data buffer to be written in the sensor
+ * @param[in]   len     Number of bytes of data to be written
+ * @return      XENSIV™ PAS CO2 error code
+ * @retval      XENSIV_PASCO2_OK if success
+ * @pre         begin()
+ */
+Error_t PASCO2SerialIno::setRegister(uint8_t regAddr, const uint8_t * data, uint8_t len)
+{
+    return xensiv_pasco2_set_reg(&dev, regAddr, data, len);
+}

@@ -46,6 +46,9 @@ class PASCO2SerialIno
         Error_t reset           ();
         Error_t getDeviceID     (uint8_t & prodID, uint8_t & revID);
 
+        Error_t getRegister     (uint8_t regAddr, uint8_t * data, uint8_t len);
+        Error_t setRegister     (uint8_t regAddr, const uint8_t * data, uint8_t len);
+
     private:
 
         TwoWire         * i2c;          /**< I2C interface*/
