@@ -71,7 +71,7 @@ A. Shield2Go
 If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it is recommended to use the XMC11000 Boot
 Kit as controller. Connect the shield and the eval kit as in the following wiring diagram:
 
-.. image:: img/pas-co2-xmc1100bk-conn-diag.jpg
+.. image:: img/pas-co2-xmc1100bk-conn-diag.png
     :width: 600
 
 Be sure that the corresponding solder jumper are set for I2C mode, and PSEL is pulled
@@ -82,7 +82,7 @@ Check the `Shield2Go Manual <https://www.infineon.com/dgdl/Infineon-Quickstart_g
 
 Then, simply connect the eval kit to the computer with the USB cable. 
 
-..warning:: 
+.. warning:: 
     Alternatively, the XMC 2Go can be used by stackin the sensor shield on top. But the XMC 2Go V1 does not support 5V signal, as required by the XENSIV™ PAS CO2 Sensor Shield2Go.
     Thus, if XMC 2Go is used, keep in mind that an additional 5V signal needs to be provided to the 5V pin of the XENSIV™ PAS CO2 Sensor Shield2Go.
 
