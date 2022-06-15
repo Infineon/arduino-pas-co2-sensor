@@ -23,6 +23,9 @@ Required Hardware
     * - `XMC 2Go <https://www.infineon.com/cms/de/product/evaluation-boards/kit_xmc_2go_xmc1100_v1/>`_
       - .. image:: img/xmc2go.jpg
             :height: 80
+    * - or `XMC1100 Boot Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/>`_
+      - .. image:: img/xmc1100-bootkit.jpg
+            :height: 80
     * - Pin headers (included with the XMC 2Go) 
       - 
     * - Micro-USB to USB A cable 
@@ -62,17 +65,32 @@ For this example we are going to use the I2C serial interface.
 A. Shield2Go
 """"""""""""
 
-If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it just need to be stacked on the XMC 2Go microcontroller board. Be sure that that the corresponding solder jumper are set for I2C mode, and PSEL is pulled to GND. 
+.. image:: img/shield2go_co2_pinout.png
+    :width: 200
+
+If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it is recommended to use the XMC11000 Boot
+Kit as controller. Connect the shield and the eval kit as in the following wiring diagram:
+
+.. image:: img/pas-co2-xmc1100bk-conn-diag.jpg
+    :width: 600
+
+Be sure that the corresponding solder jumper are set for I2C mode, and PSEL is pulled
+to GND. 
+For this example it is not required, but consider connecting the interrupt signal to the pin 2(P1.4)
+or 3(P0.0) of the XMC1100 Boot Kit for appliations that require interrupts.
 Check the `Shield2Go Manual <https://www.infineon.com/dgdl/Infineon-Quickstart_guide_PAS_CO2_Shield2go-UserManual-v01_00-EN.pdf?fileId=8ac78c8c7f2a768a017f6ab96bf11845>`_ for complete details.
 
-.. 
-    .. image:: img/pas-co2-xmc2go-small.jpg
-        :width: 250
+Then, simply connect the eval kit to the computer with the USB cable. 
 
-Then, simply connect it to the computer with the USB cable. 
+..warning:: 
+    Alternatively, the XMC 2Go can be used by stackin the sensor shield on top. But the XMC 2Go V1 does not support 5V signal, as required by the XENSIV™ PAS CO2 Sensor Shield2Go.
+    Thus, if XMC 2Go is used, keep in mind that an additional 5V signal needs to be provided to the 5V pin of the XENSIV™ PAS CO2 Sensor Shield2Go.
 
 B. Miniboard
 """"""""""""
+
+.. image:: img/minieval_co2_pinout.png
+    :width: 350
 
 In order to use the I2C interface we need to add a 10 Kohm pull-up resistors to the SDA and SCL lines, and a 12VDC voltage needs to be additionally provided to VDD12V pin. Connect the boards as shown in the following diagram:
 
@@ -92,7 +110,8 @@ With everything ready, now we are going to upload and run one of the library exa
 1. **Select the board** 
 
     Once installed the XMC board family, you can select one of the supported board from the menu *Tools > Board:*.
-    Choose the **XMC1100 XMC2Go** (*Tools > Board > XMC Family > XMC1100 XMC2Go*).
+    Choose the **XMC1100 XMC2Go** or **XMC1100 Boot Kit** depending on your hardware setup (*Tools >
+    Board > XMC Family > XMC1100 XMC2Go/XMC1100 Boot Kit*).
 
 2. **Open the example**
 
