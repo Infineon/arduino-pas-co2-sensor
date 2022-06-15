@@ -42,7 +42,7 @@ void setup()
     /* We can set the reference pressure before starting 
      * the measure 
      */
-    err = cotwo.setPressRef(pressureReference);
+    err = cotwo.setPressRef(PRESSURE_REFERENCE);
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("pressure reference error: ");
