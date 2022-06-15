@@ -6,6 +6,18 @@ Arduino library of Infineon's [**XENSIV™ Photoacoustic Spectroscopy (PAS) CO2*
 
 <img src="docs/img/pas-co2-module.png" width=200>
 
+### Supported Sensor Boards
+
+<table>
+    <tr>
+        <td><img src="docs/img/pas-co2-miniboard.png" width="200"></td>
+        <td><img src="docs/img/pas-co2-s2go-front.png" width="300"></td>
+    </tr>
+    <tr>
+        <td style="test-align : center"><a href="https://arduino-pas-co2-sensor.readthedocs.io/en/latest/hw-platforms.html#xensiv-pas-co2-miniboard">XENSIV™ PAS CO2 Miniboard</a></td>
+        <td style="test-align : center"><a href="https://arduino-pas-co2-sensor.readthedocs.io/en/latest/hw-platforms.html#xensiv-pas-co2-sensor-shield2go">XENSIV™ PAS CO2 Sensor Shield2Go</a></td>
+    </tr>
+</table>
 
 ### Getting started
 
