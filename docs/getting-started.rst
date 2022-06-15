@@ -99,7 +99,7 @@ With everything ready, now we are going to upload and run one of the library exa
     With the library installed in the Arduino IDE, you can include it from the menu *Sketch > Include Library > pas-co2-sensor*. The header ``#include <pas-co2-serial-ino.hpp>`` will be added to your sketch. 
     In this case, open and run one of the examples provided in  *File > Examples > pas-co2-sensor*.
 
-    Let´s try the serial periodic example: *File > Examples > pas-co2-sensor > serial-periodic*. 
+    Let´s try the serial continuous example: *File > Examples > pas-co2-sensor > serial-continuous*. 
 
 3. **Build and run the example**
 
