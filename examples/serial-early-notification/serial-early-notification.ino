@@ -46,6 +46,8 @@ uint8_t interruptPin = 9;      /* For XMC2Go. Change it for your hardware setup 
  * communication issues.
  */
 #define I2C_FREQ_HZ     400000  
+#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
+#define EARLY_NOTIFICATION_ENABLED         true
 
 /*
  * The constructor takes the Wire instance as i2c interface,
@@ -104,9 +106,7 @@ void setup()
     * Continuous measurement every 10 seconds.
     * Enable early notification enabled
     */
-    uint16_t measPeriodinSeconds = 10;
-    bool earlyNotificationEnabled = true;
-    err = cotwo.startMeasure(measPeriodinSeconds, 0, isr, earlyNotificationEnabled);
+    err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS, 0, isr, EARLY_NOTIFICATION_ENABLED);
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("start measure error: ");
@@ -116,7 +116,6 @@ void setup()
 
 void loop()
 {
-
     /* Wait for measurement to be ready */
     while(false == measurementReady) { };
 

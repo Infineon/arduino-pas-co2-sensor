@@ -10,6 +10,7 @@
  */
 #define I2C_FREQ_HZ  400000                     
 #define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
+#define PRESSURE_REFERENCE  900
 
 /*
  * Create CO2 object. Unless otherwise specified,
@@ -18,7 +19,6 @@
 PASCO2SerialIno cotwo;
 
 int16_t co2ppm;
-uint16_t pressureReference = 900;
 Error_t err;
 
 void setup()
@@ -68,8 +68,6 @@ void loop()
     /* Wait for the value to be ready. */
     delay(PERIODIC_MEAS_INTERVAL_IN_SECONDS*1000);
 
-    co2ppm = 0;
-
     err = cotwo.getCO2(co2ppm);
     if(XENSIV_PASCO2_OK != err)
     {
@@ -95,7 +93,7 @@ void loop()
      * we could compensate again by setting the new reference. 
      * Here we just keep the initial value.
      */
-    err = cotwo.setPressRef(pressureReference);
+    err = cotwo.setPressRef(PRESSURE_REFERENCE);
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("pressure reference error: ");
