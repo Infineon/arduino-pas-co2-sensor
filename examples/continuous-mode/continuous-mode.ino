@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <pas-co2-serial-ino.hpp>
+#include <pas-co2-ino.hpp>
 
 /* 
  * The sensor supports 100KHz and 400KHz. 
@@ -8,16 +8,15 @@
  * change this value to 100000 in case of 
  * communication issues.
  */
-#define I2C_FREQ_HZ 400000
+#define I2C_FREQ_HZ  400000                     
 #define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
-#define FORCED_COMPENSATION_CO2_REFERENCE  400
 #define PRESSURE_REFERENCE  900
 
-/**
+/*
  * Create CO2 object. Unless otherwise specified,
  * using the Wire interface
  */
-PASCO2SerialIno cotwo;
+PASCO2Ino cotwo;
 
 int16_t co2ppm;
 Error_t err;
@@ -28,7 +27,7 @@ void setup()
     delay(500);
     Serial.println("serial initialized");
 
-    /* Initialize the i2c serial interface used by the sensor */
+    /* Initialize the i2c interface used by the sensor */
     Wire.begin();
     Wire.setClock(I2C_FREQ_HZ);
 
@@ -40,32 +39,34 @@ void setup()
       Serial.println(err);
     }
 
-    /* Clear previous forced compensation offset */
-    err = cotwo.clearForcedCompensation();
+    /* We can set the reference pressure before starting 
+     * the measure 
+     */
+    err = cotwo.setPressRef(PRESSURE_REFERENCE);
     if(XENSIV_PASCO2_OK != err)
     {
-      Serial.print("clear forced compensation error: ");
+      Serial.print("pressure reference error: ");
       Serial.println(err);
     }
 
     /*
-      * Configure the sensor to measureme periodically 
-      * every 10 seconds
-      */
+     * Configure the sensor to measureme periodically 
+     * every 10 seconds
+     */
     err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("start measure error: ");
       Serial.println(err);
     }
+
+    delay(1000);
 }
 
 void loop()
 {
     /* Wait for the value to be ready. */
     delay(PERIODIC_MEAS_INTERVAL_IN_SECONDS*1000);
-
-    co2ppm = 0;
 
     err = cotwo.getCO2(co2ppm);
     if(XENSIV_PASCO2_OK != err)
@@ -96,24 +97,6 @@ void loop()
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("pressure reference error: ");
-      Serial.println(err);
-    }
-
-    err = cotwo.performForcedCompensation(FORCED_COMPENSATION_CO2_REFERENCE);
-    if(XENSIV_PASCO2_OK != err)
-    {
-      Serial.print("forced compensation error: ");
-      Serial.println(err);
-    }
-
-    /*
-     * Restart, as after performForcedCompensation function
-     * the sensor returns to IDLE mode.
-     */
-    err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
-    if(XENSIV_PASCO2_OK != err)
-    {
-      Serial.print("start measure error: ");
       Serial.println(err);
     }
 }

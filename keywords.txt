@@ -20,15 +20,19 @@ getCO2  KEYWORD2
 getDiagnosis    KEYWORD2
 setABOC KEYWORD2
 setPressRef KEYWORD2
+performForcedCompensation   KEYWORD2
+clearForcedCompensation KEYWORD2
 reset   KEYWORD2
 getDeviceID KEYWORD2
+getRegister KEYWORD2
+setRegister KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
 #######################################
 
 PASCO2  KEYWORD2
-PASCO2SerialIno KEYWORD2
+PASCO2Ino KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

@@ -3,12 +3,12 @@
 API Reference
 =============
 
-The Arduino library API is implemented via the PASCO2SerialIno class.
+The Arduino library API is implemented via the PASCO2Ino class.
 
-XENSIV™ PAS CO2 Serial Arduino API
-----------------------------------
+XENSIV™ PAS CO2 Arduino API
+---------------------------
 
-.. doxygenclass:: PASCO2SerialIno
+.. doxygenclass:: PASCO2Ino
    :members:
 
 Types
