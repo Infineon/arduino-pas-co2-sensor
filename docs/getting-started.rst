@@ -72,7 +72,7 @@ If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it is recommended to us
 Kit as controller. Connect the shield and the eval kit as in the following wiring diagram:
 
 .. image:: img/pas-co2-xmc1100bk-conn-diag.png
-    :width: 600
+    :width: 400
 
 Be sure that the corresponding solder jumper are set for I2C mode, and PSEL is pulled
 to GND. 
