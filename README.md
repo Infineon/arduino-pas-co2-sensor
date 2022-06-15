@@ -21,7 +21,7 @@ Arduino library of Infineon's [**XENSIV™ Photoacoustic Spectroscopy (PAS) CO2*
 
 ### Getting started
 
-Find a getting started tutorial based on the XENSIV™ PAS CO2 Shield2Go and the XMC 2Go eval board in this [link](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/getting-started.html).
+Find a getting started tutorial based on the XENSIV™ PAS CO2 Shield2Go and the XMC eval boards in this [link](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/getting-started.html).
 
 ### Library installation
 
