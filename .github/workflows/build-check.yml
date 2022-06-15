@@ -3,7 +3,7 @@ name: build-check
 
 on:
   push:
-    branches: [ develop, master, release/v2.2.0 ]
+    branches: [ develop, master, release/v3.0.0 ]
   pull_request:
     branches: [ develop, master ]
       
