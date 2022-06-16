@@ -68,8 +68,9 @@ A. Shield2Go
 .. image:: img/shield2go_co2_pinout.png
     :width: 200
 
-If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it is recommended to use the XMC11000 Boot
-Kit as controller. Connect the shield and the eval kit as in the following wiring diagram:
+If you are using the XENSIV™ PAS CO2 Sensor Shield2Go, it is recommended to use a microcontroller
+which provides a 5V output. In this tutorial, the XMC11000 Boot
+Kit is used. Connect the shield and the eval kit as in the following wiring diagram:
 
 .. image:: img/pas-co2-xmc1100bk-conn-diag.png
     :width: 400
