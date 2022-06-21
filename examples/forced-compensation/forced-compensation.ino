@@ -48,6 +48,26 @@ void setup()
       Serial.println(err);
     }
 
+  err = cotwo.setPressRef(PRESSURE_REFERENCE);
+  if (XENSIV_PASCO2_OK != err)
+  {
+    Serial.print("pressure reference error: ");
+    Serial.println(err);
+  }
+
+    Serial.print("forced compensation started with ");
+    Serial.print(FORCED_COMPENSATION_CO2_REFERENCE);
+    Serial.println(" ppm baseline reference ...");
+
+    err = cotwo.performForcedCompensation(FORCED_COMPENSATION_CO2_REFERENCE);
+    if (XENSIV_PASCO2_OK != err)
+    {
+      Serial.print("forced compensation error: ");
+      Serial.println(err);
+    }
+
+    Serial.println("forced compensation finished");
+
     /*
       * Configure the sensor to measureme periodically 
       * every 10 seconds
@@ -64,8 +84,6 @@ void loop()
 {
     /* Wait for the value to be ready. */
     delay(PERIODIC_MEAS_INTERVAL_IN_SECONDS*1000);
-
-    co2ppm = 0;
 
     err = cotwo.getCO2(co2ppm);
     if(XENSIV_PASCO2_OK != err)
@@ -96,24 +114,6 @@ void loop()
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("pressure reference error: ");
-      Serial.println(err);
-    }
-
-    err = cotwo.performForcedCompensation(FORCED_COMPENSATION_CO2_REFERENCE);
-    if(XENSIV_PASCO2_OK != err)
-    {
-      Serial.print("forced compensation error: ");
-      Serial.println(err);
-    }
-
-    /*
-     * Restart, as after performForcedCompensation function
-     * the sensor returns to IDLE mode.
-     */
-    err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
-    if(XENSIV_PASCO2_OK != err)
-    {
-      Serial.print("start measure error: ");
       Serial.println(err);
     }
 }
