@@ -9,6 +9,8 @@
  * communication issues.
  */
 #define I2C_FREQ_HZ     400000  
+#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
+#define ALARM_PPM_THRESHOLD  1200
 
 uint8_t interrupt_pin = 9;      /* For XMC2Go. Change it for your hardware setup */
 
@@ -58,10 +60,10 @@ void setup()
     /*
     * Periodic measurement every 10 seconds.
     * Interrupt alarm when the CO2 value 
-    * goes over 25000 ppm. The isr function is 
+    * goes over 1200 ppm. The isr function is 
     * passed enabling the sensor interrupt mode.
     */
-    err = cotwo.startMeasure(10, 1200, isr);
+    err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS, ALARM_PPM_THRESHOLD, isr);
     if(XENSIV_PASCO2_OK != err)
     {
       Serial.print("start measure error: ");

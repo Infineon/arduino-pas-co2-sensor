@@ -55,8 +55,6 @@ void loop()
   /* Wait for the value to be ready. */
   delay(5000);
 
-  co2ppm = 0;
-
   /**
    *  getCO2() is called until the value is 
    *  available.  
