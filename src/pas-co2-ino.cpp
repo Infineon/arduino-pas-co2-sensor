@@ -1,12 +1,12 @@
 /** 
- * @file        pas-co2-serial-ino.cpp
- * @brief       XENSIV™ PAS CO2 Serial Arduino API
+ * @file        pas-co2-ino.cpp
+ * @brief       XENSIV™ PAS CO2 Arduino API
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  *              
  * SPDX-License-Identifier: MIT
  */
 
-#include "pas-co2-serial-ino.hpp"
+#include "pas-co2-ino.hpp"
 
 /**
  * @brief   Assertion of XENSIV™ PAS CO2 return code
@@ -24,13 +24,13 @@
 #define PAS_CO2_SERIAL_PAL_INIT_EXTERNAL
 
 /**
- * @brief      XENSIV™ PAS CO2 Serial I2C Arduino Constructor
+ * @brief      XENSIV™ PAS CO2 I2C Arduino Constructor
  *
  * @param[in]   wire    TwoWire interface instance. Default is the Arduino primary Wire instance.
  * @param[in]   intPin  Interrupt pin. Default is UnusedPin         
  * @pre         None
  */
-PASCO2SerialIno::PASCO2SerialIno(TwoWire * wire,
+PASCO2Ino::PASCO2Ino(TwoWire * wire,
                                  uint8_t   intPin)
 : i2c(wire), uart(nullptr), intPin(intPin)
 {
@@ -38,13 +38,13 @@ PASCO2SerialIno::PASCO2SerialIno(TwoWire * wire,
 }
 
 /**
- * @brief      XENSIV™ PAS CO2 Serial UART Arduino Constructor
+ * @brief      XENSIV™ PAS CO2 UART Arduino Constructor
  * 
  * @param[in]   serial  Serial interface instance
  * @param[in]   intPin  Interrupt pin. Default is UnusedPin         
  * @pre         None
  */
-PASCO2SerialIno::PASCO2SerialIno(HardwareSerial * serial,
+PASCO2Ino::PASCO2Ino(HardwareSerial * serial,
                                  uint8_t          intPin)
 : i2c(nullptr), uart(serial), intPin(intPin)
 {
@@ -52,13 +52,13 @@ PASCO2SerialIno::PASCO2SerialIno(HardwareSerial * serial,
 }
 
 /**
- * @brief       XENSIV™ PAS CO2 Serial Arduino Destructor 
+ * @brief       XENSIV™ PAS CO2 Arduino Destructor 
  * @details     It disables the sensor and deletes all the
  *              dynamically created PAL instances in the 
  *              constructor
  * @pre         None
  */
-PASCO2SerialIno::~PASCO2SerialIno()
+PASCO2Ino::~PASCO2Ino()
 {
 
 }
@@ -67,7 +67,7 @@ PASCO2SerialIno::~PASCO2SerialIno()
  * @brief   Begins the sensor
  * 
  * @details Initializes the serial interface if the initialization
- *          is delegated to the PASCO2Serial class.
+ *          is delegated to the PASCO2 class.
  *          Sets the I2C freq or UART baudrate to the default values 
  *          prior the serial interface initialization.
  *          Initializes the interrupt pin if used.
@@ -76,7 +76,7 @@ PASCO2SerialIno::~PASCO2SerialIno()
  * @retval  XENSIV_PASCO2_OK if success 
  * @pre     None
  */
-Error_t PASCO2SerialIno::begin()
+Error_t PASCO2Ino::begin()
 {
     int32_t ret = XENSIV_PASCO2_OK;
     xensiv_pasco2_measurement_config_t  measConf;
@@ -123,14 +123,14 @@ Error_t PASCO2SerialIno::begin()
  * @brief   Ends the sensor
  * 
  * @details Deinitializes the serial interface if the deinitialization
- *          is delegated to the PASCO2Serial class. 
+ *          is delegated to the PASCO2Ino class. 
  *          Deinitializes the interrupt pin if used.
  * 
  * @return  XENSIV™ PAS CO2 error code
  * @retval  XENSIV_PASCO2_OK always
  * @pre     begin()
  */
-Error_t PASCO2SerialIno::end()
+Error_t PASCO2Ino::end()
 {
     /**< Deinitialize sensor interface*/
     if(nullptr != i2c)
@@ -175,7 +175,7 @@ Error_t PASCO2SerialIno::end()
  *              Polling example:
  * 
  *              @code
- *              PASCO2Serial cotwo(serial_intf); 
+ *              PASCO2Ino cotwo(serial_intf); 
  *              int16_t   co2ppm;
  * 
  *              serial_intf.begin();
@@ -198,7 +198,7 @@ Error_t PASCO2SerialIno::end()
  *              For example, measure every 5 minutes:
  * 
  *              @code
- *              PASCO2Serial cotwo(serial_intf);
+ *              PASCO2Ino cotwo(serial_intf);
  *              int16_t   co2ppm;
  * 
  *              serial_intf.begin();
@@ -235,7 +235,7 @@ Error_t PASCO2SerialIno::end()
  *                  intFlag = true;
  *              }
  * 
- *              PASCO2Serial cotwo(serial_intf, interrupt);
+ *              PASCO2Ino cotwo(serial_intf, interrupt);
  *              int16_t   co2ppm;
  *              
  *              serial_intf.begin();
@@ -295,7 +295,7 @@ Error_t PASCO2SerialIno::end()
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cback) (void *), bool earlyNotification)
+Error_t PASCO2Ino::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cback) (void *), bool earlyNotification)
 {
     xensiv_pasco2_measurement_config_t  measConf;
     xensiv_pasco2_interrupt_config_t intConf; 
@@ -396,7 +396,7 @@ Error_t PASCO2SerialIno::startMeasure(int16_t periodInSec, int16_t alarmTh, void
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::stopMeasure()
+Error_t PASCO2Ino::stopMeasure()
 {
     int32_t ret = XENSIV_PASCO2_OK;  
 
@@ -425,7 +425,7 @@ Error_t PASCO2SerialIno::stopMeasure()
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         startMeasure()
  */
-Error_t PASCO2SerialIno::getCO2(int16_t & CO2PPM)
+Error_t PASCO2Ino::getCO2(int16_t & CO2PPM)
 {
     xensiv_pasco2_meas_status_t measSt; 
     int32_t ret = XENSIV_PASCO2_OK;  
@@ -462,7 +462,7 @@ Error_t PASCO2SerialIno::getCO2(int16_t & CO2PPM)
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         None
  */
-Error_t PASCO2SerialIno::getDiagnosis(Diag_t & diagnosis)
+Error_t PASCO2Ino::getDiagnosis(Diag_t & diagnosis)
 {
     int32_t ret = XENSIV_PASCO2_OK; 
 
@@ -487,7 +487,7 @@ Error_t PASCO2SerialIno::getDiagnosis(Diag_t & diagnosis)
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::setABOC(ABOC_t aboc, int16_t abocRef)
+Error_t PASCO2Ino::setABOC(ABOC_t aboc, int16_t abocRef)
 {
     xensiv_pasco2_measurement_config_t  measConf;
     int32_t ret = XENSIV_PASCO2_OK; 
@@ -520,7 +520,7 @@ Error_t PASCO2SerialIno::setABOC(ABOC_t aboc, int16_t abocRef)
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::performForcedCompensation(uint16_t co2Ref)
+Error_t PASCO2Ino::performForcedCompensation(uint16_t co2Ref)
 {
     return xensiv_pasco2_perform_forced_compensation(&dev, co2Ref);
 }
@@ -532,7 +532,7 @@ Error_t PASCO2SerialIno::performForcedCompensation(uint16_t co2Ref)
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::clearForcedCompensation()
+Error_t PASCO2Ino::clearForcedCompensation()
 {
     return xensiv_pasco2_cmd(&dev, XENSIV_PASCO2_CMD_RESET_FCS);
 }
@@ -545,7 +545,7 @@ Error_t PASCO2SerialIno::clearForcedCompensation()
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::setPressRef(uint16_t pressRef)
+Error_t PASCO2Ino::setPressRef(uint16_t pressRef)
 {
     int32_t ret = XENSIV_PASCO2_OK; 
 
@@ -561,7 +561,7 @@ Error_t PASCO2SerialIno::setPressRef(uint16_t pressRef)
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::reset()
+Error_t PASCO2Ino::reset()
 {
     int32_t ret = XENSIV_PASCO2_OK; 
 
@@ -580,7 +580,7 @@ Error_t PASCO2SerialIno::reset()
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::getDeviceID(uint8_t & prodID, uint8_t & revID)
+Error_t PASCO2Ino::getDeviceID(uint8_t & prodID, uint8_t & revID)
 {
     int32_t ret = XENSIV_PASCO2_OK; 
     xensiv_pasco2_id_t id;
@@ -604,7 +604,7 @@ Error_t PASCO2SerialIno::getDeviceID(uint8_t & prodID, uint8_t & revID)
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::getRegister(uint8_t regAddr, uint8_t * data, uint8_t len)
+Error_t PASCO2Ino::getRegister(uint8_t regAddr, uint8_t * data, uint8_t len)
 {
     return xensiv_pasco2_get_reg(&dev, regAddr, data, len);
 }
@@ -619,7 +619,7 @@ Error_t PASCO2SerialIno::getRegister(uint8_t regAddr, uint8_t * data, uint8_t le
  * @retval      XENSIV_PASCO2_OK if success
  * @pre         begin()
  */
-Error_t PASCO2SerialIno::setRegister(uint8_t regAddr, const uint8_t * data, uint8_t len)
+Error_t PASCO2Ino::setRegister(uint8_t regAddr, const uint8_t * data, uint8_t len)
 {
     return xensiv_pasco2_set_reg(&dev, regAddr, data, len);
 }

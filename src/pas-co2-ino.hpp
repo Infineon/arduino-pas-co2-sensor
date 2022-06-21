@@ -1,13 +1,13 @@
 /** 
- * @file        pas-co2-serial-ino.hpp
- * @brief       XENSIV™ PAS CO2 Serial Arduino API
+ * @file        pas-co2-ino.hpp
+ * @brief       XENSIV™ PAS CO2 Arduino API
  * @copyright   Copyright (c) 2020-2021 Infineon Technologies AG
  *              
  * SPDX-License-Identifier: MIT
  */
 
-#ifndef PAS_CO2_SERIAL_INO_HPP_
-#define PAS_CO2_SERIAL_INO_HPP_
+#ifndef PAS_CO2_INO_HPP_
+#define PAS_CO2_INO_HPP_
 
 #include <Arduino.h>
 #include <Wire.h>
@@ -16,7 +16,7 @@
 #include "xensiv_pasco2.h"
 
 /**
- * @addtogroup co2sinoapi
+ * @addtogroup co2inoapi
  * @{
  */
 
@@ -24,15 +24,15 @@ typedef int32_t Error_t;
 typedef xensiv_pasco2_status_t Diag_t;
 typedef xensiv_pasco2_boc_cfg_t ABOC_t;
 
-class PASCO2SerialIno
+class PASCO2Ino
 {
     public:
 
         static constexpr uint8_t       unusedPin = 0xFFU; /**< Unused pin */        
 
-                PASCO2SerialIno (TwoWire * wire = &Wire, uint8_t intPin = unusedPin);
-                PASCO2SerialIno (HardwareSerial * serial, uint8_t intPin = unusedPin);
-                ~PASCO2SerialIno();
+                PASCO2Ino (TwoWire * wire = &Wire, uint8_t intPin = unusedPin);
+                PASCO2Ino (HardwareSerial * serial, uint8_t intPin = unusedPin);
+                ~PASCO2Ino();
         Error_t begin           ();
         Error_t end             ();
         Error_t startMeasure    (int16_t  periodInSec = 0, int16_t alarmTh = 0, void (*cback) (void *) = nullptr, bool earlyNotification = false);
@@ -63,4 +63,4 @@ class PASCO2SerialIno
 
 /** @} */
 
-#endif /** PAS_CO2_SERIAL_INO_HPP_ **/
+#endif /** PAS_CO2_INO_HPP_ **/

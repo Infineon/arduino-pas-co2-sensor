@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <pas-co2-serial-ino.hpp>
+#include <pas-co2-ino.hpp>
 
 /* 
  * The sensor supports 100KHz and 400KHz. 
@@ -18,7 +18,7 @@ uint8_t interrupt_pin = 9;      /* For XMC2Go. Change it for your hardware setup
  * The constructor takes the Wire instance as i2c interface,
  * and the controller interrupt pin
  */
-PASCO2SerialIno cotwo(&Wire, interrupt_pin);
+PASCO2Ino cotwo(&Wire, interrupt_pin);
 
 int16_t co2ppm;
 Error_t err;

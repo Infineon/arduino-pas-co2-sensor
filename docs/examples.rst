@@ -7,15 +7,15 @@ The following `examples <https://github.com/Infineon/arduino-pas-co2-sensor/tree
 
 .. list-table::
 
-    * - `serial-alarm <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/serial-alarm>`_         
+    * - `alarm-nofitication <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/alarm-notification>`_         
       - Readout of the sensor CO2 concentration based on threshold crossing and synched via hardware interrupt  
-    * - `serial-continuous <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/serial-continuous>`_ 
+    * - `continuous-mode <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/continuous-mode>`_ 
       - Readout of the sensor CO2 concentration value using continuous measurement mode
-    * - `serial-device-id <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/serial-device-id>`_    
+    * - `device-id <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/device-id>`_    
       - Readout of the sensor devices product and revision identifiers 
-    * - `serial-early-notification <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/serial-early-notification>`_    
+    * - `early-notification <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/early-notification>`_    
       - Readout of the sensor CO2 concentration based on early notification synched via hardware interrupt 
-    * - `serial-forced-compensation <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/serial-forced-compensation>`_    
+    * - `forced-compensation <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/forced-compensation>`_    
       - Set CO2 reference offset using forced compensation 
-    * - `serial-single-shot <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/serial-single-shot>`_ 
+    * - `single-shot-mode <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/single-shot-mode>`_ 
       - Readout of the sensor CO2 concentration value using single shot measurement mode

@@ -3,12 +3,12 @@
 API Reference
 =============
 
-The Arduino library API is implemented via the PASCO2SerialIno class.
+The Arduino library API is implemented via the PASCO2Ino class.
 
-XENSIV™ PAS CO2 Serial Arduino API
-----------------------------------
+XENSIV™ PAS CO2 Arduino API
+---------------------------
 
-.. doxygenclass:: PASCO2SerialIno
+.. doxygenclass:: PASCO2Ino
    :members:
 
 Types
@@ -43,7 +43,7 @@ Baseline Offset Compensation
 .. doxygenenum:: xensiv_pasco2_boc_cfg_t
 
 XENSIV™ PAS CO2 C Reference API
-------------------------------
+-------------------------------
 
 The Arduino library is wrapping the platform abstracted C library from `this project <https://github.com/Infineon/sensor-xensiv-pasco2>`_. 
 Find out the complete C core library documentation `here <https://infineon.github.io/sensor-xensiv-pasco2/html/index.html>`_.
