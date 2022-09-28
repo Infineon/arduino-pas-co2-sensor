@@ -427,7 +427,6 @@ Error_t PASCO2Ino::stopMeasure()
  */
 Error_t PASCO2Ino::getCO2(int16_t & CO2PPM)
 {
-    xensiv_pasco2_meas_status_t measSt; 
     int32_t ret = XENSIV_PASCO2_OK;  
 
     /* Initially set to 0.*/
