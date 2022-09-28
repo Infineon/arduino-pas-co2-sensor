@@ -23,6 +23,7 @@ Error_t err;
 
 void setup()
 {
+    delay(800);
     Serial.begin(9600);
     delay(500);
     Serial.println("serial initialized");
