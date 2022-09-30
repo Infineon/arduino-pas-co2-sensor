@@ -24,7 +24,7 @@ Error_t err;
 void setup()
 {
     Serial.begin(9600);
-    delay(500);
+    delay(800);
     Serial.println("serial initialized");
 
     /* Initialize the i2c interface used by the sensor */
