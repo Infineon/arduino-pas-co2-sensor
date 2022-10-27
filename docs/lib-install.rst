@@ -45,7 +45,7 @@ In the following example, we use the XMC 2Go Evaluation Kit (only available for 
     framework = arduino
 
     lib_deps =
-        infineon/XENSIV PAS CO2@^3.0.1
+        infineon/XENSIV PAS CO2@^3.0.2
 
 
 Find more information in the `PlatformIO Registry <https://platformio.org/lib/show/12518/pas-co2-sensor>`_.
