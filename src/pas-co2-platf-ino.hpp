@@ -39,6 +39,12 @@
 #define PASCO2_INO_UART     nullptr
 #define PASCO2_INO_INT      2
 
+#elif defined(ARDUINO_FEATHER_ESP32)    /**< Adafruit ESP32 Feather */
+
+#define PASCO2_INO_I2C      &Wire
+#define PASCO2_INO_UART     nullptr
+#define PASCO2_INO_INT      14
+
 #else                                   /**<  Default Arduino */
 
 #define PASCO2_INO_I2C      &Wire

@@ -13,7 +13,7 @@ These installation processes are conveniently described in the official Arduino 
 Library Manager
 ---------------
 
-Library name: ```pas-co2-sensor```
+Library name: ```XENSIV PAS CO2```
 
 Manual Installation
 -------------------
@@ -45,7 +45,7 @@ In the following example, we use the XMC 2Go Evaluation Kit (only available for 
     framework = arduino
 
     lib_deps =
-        infineon/pas-co2-sensor @ ^2.1.2
+        infineon/XENSIV PAS CO2@^3.0.1
 
 
 Find more information in the `PlatformIO Registry <https://platformio.org/lib/show/12518/pas-co2-sensor>`_.
