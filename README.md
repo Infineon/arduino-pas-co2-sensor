@@ -25,7 +25,7 @@ Find a getting started tutorial based on the XENSIV™ PAS CO2 Shield2Go and the
 
 ### Library installation
 
-Look for ```pas-co2-sensor``` in the Arduino library manager.
+Look for ```XENSIV PAS CO2``` in the Arduino library manager.
 
 Other installation alternatives [here](https://arduino-pas-co2-sensor.readthedocs.io/en/latest/lib-install.html).
 

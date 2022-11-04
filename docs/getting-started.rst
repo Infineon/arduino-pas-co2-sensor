@@ -51,7 +51,8 @@ Software Installation
 
 1. **Install XMC Board**. The official Arduino boards are already available in the Arduino software, but other third party boards as the Infineon XMC MCU based need to be explicitly included. Follow the instructions in the `link <https://github.com/Infineon/XMC-for-Arduino#installation-instructions>`_ to add the XMC board family to Arduino. Do not forget to install as well the JLink software.
 
-2. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library Manager*. Type **pas-co2-sensor** and install the library.
+2. **Install the library**. In the Arduino IDE, go to the menu *Sketch > Include library > Library
+   Manager*. Type **XENSIV PAS CO2** and install the library.
 
     .. image:: img/ard-library-manager.png
         :width: 500
@@ -116,10 +117,12 @@ With everything ready, now we are going to upload and run one of the library exa
 
 2. **Open the example**
 
-    With the library installed in the Arduino IDE, you can include it from the menu *Sketch > Include Library > pas-co2-sensor*. The header ``#include <pas-co2-ino.hpp>`` will be added to your sketch. 
-    In this case, open and run one of the examples provided in  *File > Examples > pas-co2-sensor*.
+    With the library installed in the Arduino IDE, you can include it from the menu *Sketch >
+    Include Library > XENSIV PAS CO2*. The header ``#include <pas-co2-ino.hpp>`` will be added to your
+    sketch. 
+    In this case, open and run one of the examples provided in  *File > Examples > XENSIV PAS CO2*.
 
-    Let´s try the continuous mode example: *File > Examples > pas-co2-sensor > continuous-mode*. 
+    Let´s try the continuous mode example: *File > Examples > XENSIV PAS CO2 > continuous-mode*. 
 
 3. **Build and run the example**
 
