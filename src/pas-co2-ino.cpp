@@ -369,8 +369,11 @@ Error_t PASCO2Ino::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cba
         /* Disable sensor interrupt */
         intConf.b.int_func = XENSIV_PASCO2_INTERRUPT_FUNCTION_NONE;
 
-        /* Disable mcu interrupt */
-        detachInterrupt(digitalPinToInterrupt(intPin));
+        if(unusedPin != intPin)
+        {
+            /* Disable mcu interrupt */
+            detachInterrupt(digitalPinToInterrupt(intPin));
+        }
     }
 
     /* This option will disable the alarm interrupt function */ 
