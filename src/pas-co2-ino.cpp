@@ -352,7 +352,12 @@ Error_t PASCO2Ino::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cba
     {
         /* Enable sensor interrupt */
         intConf.b.int_typ = XENSIV_PASCO2_INTERRUPT_TYPE_HIGH_ACTIVE;
-        uint8_t int_event = RISING;
+        #ifdef ARDUINO_ARCH_SAMD
+            PinStatus int_event;
+        #else
+            uint8_t int_event;
+        #endif        
+        int_event = RISING;
 
         if(true == earlyNotification)
         {
