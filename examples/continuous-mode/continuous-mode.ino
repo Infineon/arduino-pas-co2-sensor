@@ -9,7 +9,8 @@
  * communication issues.
  */
 #define I2C_FREQ_HZ  400000                     
-#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 
+#define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 /* demo-mode value; not recommended for long-term measurements */
+// #define PERIODIC_MEAS_INTERVAL_IN_SECONDS 60 /* specification value for stable operation (uncomment for long-time-measurements) */
 #define PRESSURE_REFERENCE  900
 
 /*
@@ -51,7 +52,7 @@ void setup()
 
     /*
      * Configure the sensor to measureme periodically 
-     * every 10 seconds
+     * every 60 seconds
      */
     err = cotwo.startMeasure(PERIODIC_MEAS_INTERVAL_IN_SECONDS);
     if(XENSIV_PASCO2_OK != err)
