@@ -17,10 +17,10 @@ jobs:
         board: 
           - fqbn: "arduino:avr:uno"
             platform-name: arduino:avr
-          - fqbn: "Infineon:arm:XMC1100_XMC2GO"
-            platform-name: Infineon:arm
-          - fqbn: "Infineon:arm:XMC1100_Boot_Kit"
-            platform-name: Infineon:arm
+          - fqbn: "Infineon:xmc:XMC1100_XMC2GO"
+            platform-name: Infineon:xmc
+          - fqbn: "Infineon:xmc:XMC1100_Boot_Kit"
+            platform-name: Infineon:xmc
           - fqbn: "esp32:esp32:featheresp32"
             platform-name: esp32:esp32
 
@@ -32,10 +32,10 @@ jobs:
               - name: arduino:avr
               
           - board:
-              platform-name: Infineon:arm
+              platform-name: Infineon:xmc
             platforms: |
               # Install Arduino Avr Boards via Boards Manager
-              - name: Infineon:arm
+              - name: Infineon:xmc
                 source-url: https://github.com/Infineon/XMC-for-Arduino/releases/latest/download/package_infineon_index.json
                 
           - board:
