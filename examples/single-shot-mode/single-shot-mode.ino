@@ -10,7 +10,7 @@
  */
 #define I2C_FREQ_HZ 400000  
 #define MEAS_INTERVAL_IN_SECONDS  10 /* demo-mode value; not recommended for long-term measurements */
-// #define MEAS_INTERVAL_IN_SECONDS 60 /* specification value for stable operation (uncomment for long-time-measurements) */
+// #define MEAS_INTERVAL_IN_SECONDS 60L /* specification value for stable operation (uncomment for long-time-measurements) */
 
 /**
  * Create CO2 object. Unless otherwise specified,
