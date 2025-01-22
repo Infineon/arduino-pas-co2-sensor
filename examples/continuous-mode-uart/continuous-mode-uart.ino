@@ -12,11 +12,16 @@
 // #define PERIODIC_MEAS_INTERVAL_IN_SECONDS 60L /* specification value for stable operation (uncomment for long-time-measurements) */
 #define PRESSURE_REFERENCE  900
 
+//#if defined(ARDUINO_ARCH_RENESAS)    /*Depends upon your board add here */
+//  #define mySerial Serial1
+//#else
+ // SoftwareSerial mySerial(RX, TX)  //Future purpose for multiserial
+//#endif
 /*
  * Create CO2 object. Unless otherwise specified,
  * using the Serial interface
  */
-PASCO2Ino cotwo(&Serial1);
+PASCO2Ino cotwo(&Serial1);    // Serial1 available in Arduino UNO R4 Wifi board
 
 int16_t co2ppm;
 Error_t err;
