@@ -130,7 +130,7 @@ Its Arduino core needs to implement the `Arduino reference language <https://www
 
 Verified MCU Boards
 """""""""""""""""""
-The library examples have been built and successfully executed on the following hardware platforms:
+The library examples have been built and successfully executed on the following hardware platforms for I2C:
 
 .. list-table::
     :header-rows: 1

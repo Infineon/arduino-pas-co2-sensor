@@ -1,34 +1,29 @@
 #include <Arduino.h>
 #include <pas-co2-ino.hpp>
 
-/* 
- * The sensor supports 9.6kbps.
- * check PSEL pin
- * PSEL->3.3v 
- */
-
-#define BAUD_RATE 9600
 #define PERIODIC_MEAS_INTERVAL_IN_SECONDS  10 /* demo-mode value; not recommended for long-term measurements */
 // #define PERIODIC_MEAS_INTERVAL_IN_SECONDS 60L /* specification value for stable operation (uncomment for long-time-measurements) */
 #define PRESSURE_REFERENCE  900
 
-//#if defined(ARDUINO_ARCH_RENESAS)    /*Depends upon your board add here */
-//  #define mySerial Serial1
-//#else
- // SoftwareSerial mySerial(RX, TX)  //Future purpose for multiserial
-//#endif
 /*
- * Create CO2 object. Unless otherwise specified,
- * using the Serial interface
+ * Create CO2 object
+ * Hardware serial Boards list: 
+ * Arduino UNO R4 Wifi
+ * Arduino Mega 2560
+ * Arduino Leonardo
+ * ESP32
+ * Arduino MKR 1000 WiFi
+ * XMC4700 Relax Kit
  */
-PASCO2Ino cotwo(&Serial1);    // Serial1 available in Arduino UNO R4 Wifi board
+PASCO2Ino cotwo(&Serial1);     
+
 
 int16_t co2ppm;
 Error_t err;
 
 void setup()
 {
-    Serial1.begin(BAUD_RATE);               
+    Serial1.begin(9600);
     Serial.begin(9600);
     delay(800);
     Serial.println("serial initialized");
