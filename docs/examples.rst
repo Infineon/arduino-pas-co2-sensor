@@ -19,3 +19,5 @@ The following `examples <https://github.com/Infineon/arduino-pas-co2-sensor/tree
       - Set CO2 reference offset using forced compensation 
     * - `single-shot-mode <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/single-shot-mode>`_ 
       - Readout of the sensor CO2 concentration value using single shot measurement mode
+    * - `continuous-mode-uart <https://github.com/Infineon/arduino-pas-co2-sensor/tree/master/examples/continuous-mode-uart>`_
+      - Readout of the sensor CO2 concentration value using continuous measurement mode for UART

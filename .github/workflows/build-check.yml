@@ -11,39 +11,57 @@ jobs:
   build:
     name: ${{ matrix.board.fqbn }}
     runs-on: ubuntu-latest
+
+
     strategy:
       fail-fast: false
+
+
       matrix:
         board: 
           - fqbn: "arduino:avr:uno"
             platform-name: arduino:avr
+            Serial1: false
+            i2c: true
           - fqbn: "Infineon:xmc:XMC1100_XMC2GO"
             platform-name: Infineon:xmc
+            Serial1: false
+            i2c: true
           - fqbn: "Infineon:xmc:XMC1100_Boot_Kit"
             platform-name: Infineon:xmc
+            Serial1: false
+            i2c: true
           - fqbn: "esp32:esp32:featheresp32"
             platform-name: esp32:esp32
+            Serial1: true
+            i2c: true
 
         include:
           - board:
+              Serial1: false
               platform-name: arduino:avr
             platforms: |
               # Install Arduino Avr Boards via Boards Manager
               - name: arduino:avr
-              
+
           - board:
+              Serial1: false
               platform-name: Infineon:xmc
             platforms: |
               # Install Arduino Avr Boards via Boards Manager
               - name: Infineon:xmc
-                source-url: https://github.com/Infineon/XMC-for-Arduino/releases/latest/download/package_infineon_index.json
-                
+                source-url: https://github.com/Infineon/XMC-for-Arduino/releases/latest/download/package_infineon_index.json  
+
           - board:
+              Serial1: true
               platform-name: esp32:esp32
             platforms: |
               # Install ESP32 platform via Boards Manager
               - name: esp32:esp32
                 source-url: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+            serial-sketch-paths: |
+              - examples/continuous-mode-uart
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -54,5 +72,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           platforms: ${{ matrix.platforms }}
           fqbn: ${{ matrix.board.fqbn }}
-
-              
+          sketch-paths: |
+            # Compile these sketched for all boards
+            - examples/alarm-notification
+            - examples/continuous-mode
+            - examples/device-id
+            - examples/early-notification
+            - examples/forced-compensation
+            - examples/single-shot-mode
+            ${{matrix.serial-sketch-paths}}
