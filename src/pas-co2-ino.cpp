@@ -352,7 +352,7 @@ Error_t PASCO2Ino::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cba
     {
         /* Enable sensor interrupt */
         intConf.b.int_typ = XENSIV_PASCO2_INTERRUPT_TYPE_HIGH_ACTIVE;
-        #if defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_RENESAS)
+        #if defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_RENESAS) || defined(ARDUINO_ARCH_PSOC6)
             PinStatus int_event;
         #else
             uint8_t int_event;
