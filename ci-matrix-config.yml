@@ -1,3 +1,6 @@
+include:
+  - fqbn: esp32:esp32:featheresp32
+
 exclude:
   # Serial1 instance is not available for these boards.
   - sketch: examples/continuous-mode-uart/continuous-mode-uart.ino
@@ -9,3 +12,7 @@ exclude:
       - Infineon:xmc:XMC1300_Boot_Kit
       - Infineon:xmc:XMC1400_XMC2GO
       - Infineon:xmc:XMC1400_Arduino_Kit
+      
+additional_urls:
+  - core: esp32:esp32
+    url: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
