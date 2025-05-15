@@ -6,4 +6,3 @@ on:
 jobs:
   arduino-devops:
     uses: Infineon/arduino-devops/.github/workflows/compile-examples-lib.yml@compile-examples-lib
-    secrets: inherit
