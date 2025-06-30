@@ -1,6 +1,6 @@
 # XENSIV™ PAS CO2 Sensor Arduino Library
 
-![build-check](https://github.com/Infineon/arduino-pas-co2-sensor/actions/workflows/build-check.yml/badge.svg)
+[![Compile examples](https://github.com/Infineon/arduino-pas-co2-sensor/actions/workflows/compile_examples.yml/badge.svg)](https://github.com/Infineon/arduino-pas-co2-sensor/actions/workflows/compile_examples.yml)
 
 Arduino library of Infineon's [**XENSIV™ Photoacoustic Spectroscopy (PAS) CO2**](https://www.infineon.com/cms/en/product/sensor/co2-sensors/) miniaturized sensor.
 
