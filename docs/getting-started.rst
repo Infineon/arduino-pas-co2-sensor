@@ -14,16 +14,16 @@ Required Hardware
 
     * - Name
       - Picture
-    * - `XENSIV™ PAS CO2 Sensor Shield2Go <https://www.infineon.com/cms/en/product/evaluation-boards/shield_pasco2_sensor>`_
+    * - `XENSIV™ PAS CO2 Sensor Shield2Go <https://www.infineon.com/evaluation-board/SHIELD-PASCO2-SENSOR>`_
       - .. image:: img/pas-co2-s2go-front.png
             :height: 60
-    * - or `XENSIV™ PAS CO2 Miniboard <https://www.infineon.com/cms/en/product/evaluation-boards/eval_pasco2_miniboard>`_
+    * - or `XENSIV™ PAS CO2 Miniboard <https://www.infineon.com/evaluation-board/EVAL-PASCO2-MINIBOARD>`_
       - .. image:: img/pas-co2-miniboard.png
             :height: 80 
     * - `XMC 2Go <https://www.infineon.com/cms/de/product/evaluation-boards/kit_xmc_2go_xmc1100_v1/>`_
       - .. image:: img/xmc2go.jpg
             :height: 80
-    * - or `XMC1100 Boot Kit <https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc11_boot_001/>`_
+    * - or `XMC1100 Boot Kit <https://www.infineon.com/evaluation-board/KIT-XMC11-BOOT-001/>`_
       - .. image:: img/xmc1100-bootkit.jpg
             :height: 80
     * - Pin headers (included with the XMC 2Go) 
@@ -82,7 +82,7 @@ Be sure that the corresponding solder jumper are set for I2C mode, and PSEL is p
 to GND. 
 For this example it is not required, but consider connecting the interrupt signal to the pin 2(P1.4)
 or 3(P0.0) of the XMC1100 Boot Kit for appliations that require interrupts.
-Check the `Shield2Go Manual <https://www.infineon.com/dgdl/Infineon-Quickstart_guide_PAS_CO2_Shield2go-UserManual-v01_00-EN.pdf?fileId=8ac78c8c7f2a768a017f6ab96bf11845>`_ for complete details.
+Check the `Shield2Go Manual <https://www.infineon.com/assets/row/public/documents/24/44/infineon-quickstart-guide-pas-co2-shield2go-usermanual-en.pdf>`_ for complete details.
 
 Then, simply connect the eval kit to the computer with the USB cable. 
 
