@@ -24,4 +24,4 @@ Welcome to the Infineon Photoacoustic Spectroscopy XENSIV™ PAS CO2 Sensor Ardu
 License
 =======
 
-Find the license for this library `here <https://github.com/Infineon/arduino-pas-co2-sensor/blob/master/LICENSE>`_.
+Find the license for this library `here <https://github.com/Infineon/arduino-pas-co2-sensor/blob/master/LICENSE.md>`_.
