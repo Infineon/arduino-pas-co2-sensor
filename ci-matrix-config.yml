@@ -7,11 +7,11 @@ exclude:
     fqbn: 
       - arduino:avr:uno
       - arduino:avr:nano
-      - Infineon:xmc:XMC1100_Boot_Kit
-      - Infineon:xmc:XMC1100_XMC2GO
-      - Infineon:xmc:XMC1300_Boot_Kit
-      - Infineon:xmc:XMC1400_XMC2GO
-      - Infineon:xmc:XMC1400_Arduino_Kit
+      - infineon:xmc:kit_xmc11_boot_001
+      - infineon:xmc:kit_xmc_2go_xmc1100_v1
+      - infineon:xmc:kit_xmc13_boot_001
+      - infineon:xmc:kit_xmc14_2go
+      - infineon:xmc:kit_xmc1400_arduino
       
 additional_urls:
   - core: esp32:esp32
