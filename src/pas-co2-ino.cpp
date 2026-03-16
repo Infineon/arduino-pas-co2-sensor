@@ -367,7 +367,7 @@ Error_t PASCO2Ino::startMeasure(int16_t periodInSec, int16_t alarmTh, void (*cba
         }
 
         /* Enable mcu interupt */
-        attachInterrupt(digitalPinToInterrupt(intPin), (void (*)())cback, int_event);
+        attachInterrupt(digitalPinToInterrupt(intPin), (void (*)())cback, (PinStatus) int_event);
     }
     else
     {
